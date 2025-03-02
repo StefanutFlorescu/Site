@@ -1,5 +1,5 @@
 <!DOCTYPE html><!-- Daca nu scrii asta, posibil sa mearga diferit in functie de browser -->
-<html lang="ro"><!-- Nu se identifica bine?? nu se mai pacaleste crawler-ul-->
+<html lang="en"><!-- Nu se identifica bine?? nu se mai pacaleste crawler-ul-->
     <head><!-- Inf despre pagina -->
         <title>Steakhouse</title>
         <meta charset="UTF-8"><!-- Sa se reprezinte bine caracterele -->
@@ -59,16 +59,18 @@
                 <p>T - time</p>
                 <p>D - the thickness of the steak</p>
                 <p>K - constant</p>
-                <math xmlns="http://www.w3.org/1998/Math/MathML">
-                    <mi>t</mi>
-                    <mo>=</mo>
-                    <mi>k</mi>
-                    <mo>&#x22C5;</mo>
-                    <msup>
-                      <mi>d</mi>
-                      <mn>2</mn>
-                    </msup>
-                  </math>
+                <aside>
+                    <math xmlns="http://www.w3.org/1998/Math/MathML">
+                        <mi>t</mi>
+                        <mo>=</mo>
+                        <mi>k</mi>
+                        <mo>&#x22C5;</mo>
+                        <msup>
+                        <mi>d</mi>
+                        <mn>2</mn>
+                        </msup>
+                    </math>
+                </aside>
                 <p>What sets us apart?</p>
                 <ol>
                     <li><strong>High-Quality Meat</strong> - We source the best cuts from top-tier farms, ensuring a rich and flavorful taste.</li>
@@ -119,8 +121,8 @@
                     </section>
                     <section>
                         <h4>Steaks</h4>
-                        <h5>Aged in House</h5>
                         <section>
+                            <h5>Aged in House</h5>
                             <ul>
                                 <li>
                                     <b>T-BONE STEAK (500g) 292 lei</b>
@@ -141,12 +143,23 @@
                 <section id = "drinks">
                     <h3>Drinks</h3>
                 </section>
+            </section>
             <section id="gallery">
+                <h3>Gallery</h3>
+                <picture>
+                    <img src="./Resurse/Imagini/OSHO-144-1-600x900.jpg" alt="Delicious Steak">
+                </picture>
+                <picture>
+                    <img src="./Resurse/Imagini/OSHO-219-1-600x900.jpg" alt="Delicious Steak">
+                </picture>
+                <picture>
+                    <img src="./Resurse/Imagini/OSHO-304-1-600x900.jpg" alt="Delicious Steak">
+                </picture>
                 <figure>
                     <picture>
                         <source srcset="./Resurse/Imagini/Steak_Small.png" media="(max-width: 600px)">
                         <source srcset="./Resurse/Imagini/Steak_Med.png" media="(max-width: 1024px)">
-                        <img src="./Resurse/Imagini/Steak.png" alt="Friptură de vită delicioasă">
+                        <img src="./Resurse/Imagini/Steak.png" alt="Delicious Steak">
                     </picture>
                     <figcaption>Perfect Steak every time!</figcaption>
                 </figure>
@@ -160,14 +173,14 @@
             <section id = "events-offers">
                 <h2>Events & Offers</h2>
     
-                <section id = "new">
+                <article id = "new">
                     <h3>New Things</h3>
                     <p><strong>New arrivals in our menu!</strong> We've just introduced some exciting new dishes for you to try!</p>
                     <blockquote>
                         "A fresh taste of summer with our new grilled vegetables and juicy steaks!"
                     </blockquote>
                     <p>Come and discover the <em>latest</em> offerings at our restaurant!</p>
-                </section>
+                </article>
     
                 <section id = "events">
                     <h3>Events</h3>
@@ -231,7 +244,7 @@
             <p><a href="#">Home</a></p>
             <address id = "contact">
                 <p>Phone: <a href="tel:+408128812">+40 812 8812</a></p>
-                <p>Adress: <a href="https://maps.app.goo.gl/3775N8xYJuAQm8MJ6">Str. Exemplar, București</a></p>
+                <p>Adress: <a href="https://maps.app.goo.gl/3775N8xYJuAQm8MJ6">University of Bucharest</a></p>
                 <p>Email: <a href="mailto:contact@steakhouse.ro">contact@steakhouse.ro</a></p>
                 <p>Chat: <a href="skype:live:steakhouse?chat">Skype</a></p>
             </address>
