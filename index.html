@@ -12,33 +12,37 @@
         <link rel="shortcut icon" href="./Resurse/Imagini/favicon/favicon.ico" />
         <link rel="apple-touch-icon" sizes="180x180" href="./Resurse/Imagini/favicon/apple-touch-icon.png" />
         <link rel="manifest" href="./Resurse/Imagini/favicon/site.webmanifest" />
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>
         <header>
             <h1>Steakhouse</h1>
             <nav>
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <ul>
-                        <li><a href="#introduction">Our Restaurant</a></li>
-                        <li><a href="#inspiration">Inspiration</a></li>
-                    </ul>
-                    <li><a href="#menu">Menu</a></li>
-                    <ul>
-                        <li><a href="#food">Food</a></li>
-                        <li><a href="#drinks">Drinks</a></li>
-                    </ul>   
+                <ul class="menu">
+                    <li><a href="#">Home</a>
+                        <ul class="submenu">
+                            <li><a href="#introduction">Our Restaurant</a></li>
+                            <li><a href="#inspiration">Inspiration</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#menu">Menu</a>
+                        <ul class="submenu">
+                            <li><a href="#food">Food</a></li>
+                            <li><a href="#drinks">Drinks</a></li>
+                        </ul>
+                    </li>   
                     <li><a href="#gallery">Gallery</a></li>
                     <li><a href="#rezervations">Rezervations</a></li>
-                    <li><a href="#events-offers">Events & Offers</a></li>
-                    <ul>
-                        <li><a href="#new">New Things</a></li>
-                        <li><a href="#events">Events</a></li>
-                        <li><a href="#offers">Offers</a></li>
-                    </ul>
+                    <li><a href="#events-offers">Events & Offers</a>
+                        <ul class="submenu">
+                            <li><a href="#new">New Things</a></li>
+                            <li><a href="#events">Events</a></li>
+                            <li><a href="#offers">Offers</a></li>
+                        </ul>
+                    </li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
-            </nav>
+            </nav>            
         </header>
         <main>
             <section id="introduction">
