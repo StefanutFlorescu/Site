@@ -13,6 +13,8 @@
         <link rel="apple-touch-icon" sizes="180x180" href="./Resurse/Imagini/favicon/apple-touch-icon.png" />
         <link rel="manifest" href="./Resurse/Imagini/favicon/site.webmanifest" />
         <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="E:\An2_Sem2\Tehnici_Web\Site\Resurse\minDisplay.css">
+        <link rel="stylesheet" href="E:\An2_Sem2\Tehnici_Web\Site\Resurse\medDisplay.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Fleur+De+Leah&family=Roboto:wght@100&display=swap" rel="stylesheet">
@@ -376,54 +378,62 @@
             </section>
             <section>
                 <table>
-                    <tr>
-                        <th>Preparat</th>
-                        <th>Cantitate</th>
-                        <th>Calorii</th>
-                        <th>Preț</th>
-                    </tr>
-                    <tr>
-                        <td>Ribeye Steak</td>
-                        <td>300g</td>
-                        <td>750 kcal</td>
-                        <td>80 lei</td>
-                    </tr>
-                    <tr>
-                        <td>Filet Mignon</td>
-                        <td>250g</td>
-                        <td>600 kcal</td>
-                        <td>95 lei</td>
-                    </tr>
-                    <tr>
-                        <td>T-Bone Steak</td>
-                        <td>400g</td>
-                        <td>1000 kcal</td>
-                        <td>120 lei</td>
-                    </tr>
-                    <tr>
-                        <td>BBQ Ribs</td>
-                        <td>500g</td>
-                        <td>1100 kcal</td>
-                        <td>90 lei</td>
-                    </tr>
-                    <tr>
-                        <td>Grilled Chicken Breast</td>
-                        <td>200g</td>
-                        <td>400 kcal</td>
-                        <td>45 lei</td>
-                    </tr>
-                    <tr>
-                        <td>Grilled Chicken Breast</td>
-                        <td>200g</td>
-                        <td>400 kcal</td>
-                        <td>45 lei</td>
-                    </tr>
-                    <tr>
-                        <td>Grilled Chicken Breast</td>
-                        <td>200g</td>
-                        <td>400 kcal</td>
-                        <td>45 lei</td>
-                    </tr>
+                    <caption>Calorii Meniu</caption>
+                    <thead>
+                        <tr>
+                            <th>Preparat</th>
+                            <th>Cantitate</th>
+                            <th>Calorii</th>
+                            <th>Preț</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Ribeye Steak</td>
+                            <td>300g</td>
+                            <td>750 kcal</td>
+                            <td>80 lei</td>
+                        </tr>
+                        <tr>
+                            <td>Filet Mignon</td>
+                            <td>250g</td>
+                            <td>600 kcal</td>
+                            <td>95 lei</td>
+                        </tr>
+                        <tr>
+                            <td>T-Bone Steak</td>
+                            <td>400g</td>
+                            <td>1000 kcal</td>
+                            <td>120 lei</td>
+                        </tr>
+                        <tr>
+                            <td>BBQ Ribs</td>
+                            <td>500g</td>
+                            <td>1100 kcal</td>
+                            <td>90 lei</td>
+                        </tr>
+                        <tr>
+                            <td rowspan="3">Grilled Chicken Breast</td>
+                            <td>200g</td>
+                            <td>400 kcal</td>
+                            <td>45 lei</td>
+                        </tr>
+                        <tr>
+                            <td>250g</td>
+                            <td>500 kcal</td>
+                            <td>50 lei</td>
+                        </tr>
+                        <tr>
+                            <td>300g</td>
+                            <td>600 kcal</td>
+                            <td>55 lei</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="4">Total preparate: 5</td>
+                        </tr>
+                    </tfoot>
                 </table>                             
             </section>
 
@@ -438,7 +448,12 @@
                 <p>Chat: <a href="skype:live:steakhouse?chat">Skype</a></p>
             </address>
             <small>&copy; <time datetime="2025-02-25">25 february 2025</time> Steakhouse</small>
-            <a href="#" id="link-top"><div id="triunghi"></div></a>
+            <a href="#">
+                <div id="link-top">
+                    <div class="border"></div>
+                    <div class="sageata">&#8593;</div> 
+                </div>
+            </a>
         </footer>
     </body>
 </html>

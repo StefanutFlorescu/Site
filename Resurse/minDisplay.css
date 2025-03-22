@@ -1,0 +1,190 @@
+@media (max-width: 750px) {
+    /* Define root variables for padding, grid gap, and font size */
+    :root {
+        --page-padding: 20px;
+        --grid-gap: 10px;
+        font-size: 15px;
+    }
+
+    /* Adjust the grid layout for small screens */
+    #grid-pagina {
+        grid-template-columns: 100%;
+        grid-template-areas: 
+            "introduction"
+            "inspiration"
+            "apart"
+            "menu"
+            "gallery"
+            "events-offers"
+            "femd"
+            "demd"
+            "rezervations"
+            "map"
+            "faq";
+    }
+
+    /* Define the layout for the "apart" section */
+    #apart {
+        grid-area: apart;
+        grid-template-columns: 1fr;
+        display: grid;
+        grid-template-areas: "fpic1" "set" "fpic2";
+        margin-bottom: 50%; /* Large bottom margin might cause unnecessary whitespace */
+    }
+
+    /* Reduce header font size */
+    header {
+        font-size: 1.5rem;
+    }
+
+    /* Reset margins and paddings for navigation */
+    nav {
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Adjust navigation list padding */
+    nav ul {
+        padding: 0.1rem;
+    }
+
+    /* Remove unnecessary margin in list items */
+    nav ul li {
+        margin: 0;
+    }
+
+    /* Ensure images are responsive */
+    img {
+        max-width: 100%;
+    }
+
+    /* Limit main content width */
+    main {
+        max-width: 90%;
+    }
+
+    /* Center header content */
+    header {
+        display: flex;
+        justify-content: center; 
+        align-items: center;
+        position: relative;
+        padding: 0.5rem;
+    }
+
+    /* Remove margin from h1 inside header */
+    header > h1 {
+        margin: 0;
+    }
+
+    /* Style the hamburger menu */
+    .hamburger {
+        display: block;
+        position: absolute;
+        left: 15px;
+        font-size: 2rem;
+        cursor: pointer;
+        color: white;
+    }
+
+    /* Hide menu by default, make it a column layout */
+    .menu {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #333;
+        padding: 0.8rem;
+        text-align: center;
+        transition: all 0.3s ease-in-out;
+    }
+
+    /* Ensure menu items take full width */
+    .menu li {
+        display: block; 
+        width: 100%;
+    }
+    
+    /* Style menu links */
+    .menu a {
+        display: block;
+        width: 100%;
+        padding: 12px 20px;
+        color: #8d774a;
+        text-decoration: none;
+        font-weight: bold;
+        transition: all 0.3s ease-in-out;
+    }
+    
+    /* Highlight menu links on hover */
+    .menu a:hover {
+        background: #c2a676;
+        color: #fff;
+    }
+
+    /* Show menu when the toggle checkbox is checked */
+    #menu-toggle:checked + .hamburger + nav .menu {
+        display: flex;
+        transition: all 0.3s ease-in-out;
+    }
+
+    /* Style submenu */
+    .submenu {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: #fdfaf5;
+        display: none; /* Ensure submenu is hidden by default */
+        min-width: 180px;
+        border-radius: 5px;
+        box-shadow: 0px 4px 6px rgba(194, 166, 118, 0.4);
+    }
+    
+    /* Ensure submenu width consistency */
+    .submenu {
+        width: 100%;
+    }
+
+    /* Define submenu styles (duplicated rule, should be removed or merged) */
+    .submenu {
+        display: none;
+        position: absolute;
+        top: 100%; 
+        left: 0;
+        width: 100%; 
+        background-color: #c2a676;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+        z-index: 1000; /* Ensures submenu appears above other elements */
+    }
+    
+    /* Make submenu items block-level */
+    .submenu li {
+        display: block;
+        width: 100%;
+    }
+    
+    /* Style submenu links */
+    .submenu a {
+        display: block;
+        padding: 12px 20px;
+        text-align: left;
+        color: #6b562f;
+        text-decoration: none;
+    }
+    
+    /* Highlight submenu links on hover */
+    .submenu a:hover {
+        background: #8d774a;
+        color: white;
+    }
+
+    /* Hide menu text (potentially unused class) */
+    .menu-text {
+        display: none;
+    }
+}
