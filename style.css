@@ -1,12 +1,14 @@
 :root {
     --page-padding: 80px;
     --grid-gap: 30px;
+    font-size: 15px;
 }
 
 @media (max-width: 1200px) {
     :root {
         --page-padding: 40px;
         --grid-gap: 20px;
+        font-size: 15px;
     }
 }
 
@@ -14,6 +16,7 @@
     :root {
         --page-padding: 20px;
         --grid-gap: 10px;
+        font-size: 15px;
     }
 }
 #grid-pagina{
@@ -229,6 +232,12 @@ nav ul li a {
     font-weight: bold;
     padding: 10px;
     transition: 0.3s;
+    font-family: "Roboto", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 100;
+    font-style: normal;
+    font-variation-settings:
+      "wdth" 100;
 }
 
 nav ul li a:hover {
@@ -255,6 +264,15 @@ section {
 h1, h2, h3, h4, h5 {
     color: #8d774a;
     margin-bottom: 10px;
+}
+
+h1{
+    font-family: "Roboto", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 200;
+    font-style: normal;
+    font-variation-settings:
+      "wdth" 100;
 }
 
 ul, ol {
@@ -404,4 +422,286 @@ a {
 
 #gallery img:hover {
     transform: scale(1.05);
+}
+h2{
+    font-size: 1.6rem;
+}
+h3{
+    font-size: 1.4rem;
+}
+
+
+#link-top{
+    position:fixed;
+    bottom:0.3em;
+    opacity:0.5;
+    right:0.3em;
+    width:3rem;
+    box-sizing: border-box;
+    height:3rem;
+    line-height:3rem;
+    text-align:center;
+    border:5px solid grey;
+    border-top-color:red;
+    border-radius:50%;
+    background: rgb(220,220,220);
+  }
+  #link-top:hover{
+    opacity:1;
+  }
+  #triunghi{
+    height:0px;
+    width:0;
+    display:inline-block;
+    border-bottom:1.5rem solid grey;
+    border-left:1rem solid transparent;
+    border-right:1rem solid transparent;
+    vertical-align: top;
+    transform: translateY(30%);
+  }
+
+
+
+.hamburger {
+    display: none;
+    font-size: 30px;
+    cursor: pointer;
+    color: white;
+}
+
+#menu-toggle {
+    display: none;
+}
+
+@media screen and (max-width: 750px) {
+    header {
+        display: flex;
+        justify-content: center; 
+        align-items: center;
+        position: relative;
+        padding: 10px;
+    }
+
+    header > h1{
+        margin: 0;
+    }
+
+    .hamburger {
+        display: block;
+        position: absolute;
+        left: 15px;
+        font-size: 40px;
+        cursor: pointer;
+        color: white;
+    }
+
+    .menu {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #333;
+        padding: 10px;
+        text-align: center;
+    }
+
+    .menu li {
+        display: block; 
+        width: 100%;
+    }
+    
+    .menu a {
+        display: block;
+        width: 100%;
+        padding: 12px 20px;
+        color: #8d774a;
+        text-decoration: none;
+        font-weight: bold;
+        transition: all 0.3s ease-in-out;
+    }
+    
+    .menu a:hover {
+        background: #c2a676;
+        color: #fff;
+    }
+
+    #menu-toggle:checked + .hamburger + nav .menu {
+        display: flex;
+    }
+
+    .submenu {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: #fdfaf5; 
+        display: none;
+        min-width: 180px;
+        border-radius: 5px;
+        box-shadow: 0px 4px 6px rgba(194, 166, 118, 0.4);
+    }
+    
+    .submenu {
+        width: 100%;
+    }
+
+    .submenu {
+        display: none;
+        position: absolute;
+        top: 100%; 
+        left: 0;
+        width: 100%; 
+        background-color: #c2a676;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+        z-index: 1000; /* Îl aduce deasupra altor elemente */
+    }
+    
+    .submenu li {
+        display: block;
+        width: 100%;
+    }
+    
+    .submenu a {
+        display: block;
+        padding: 12px 20px;
+        text-align: left;
+        color: #6b562f;
+        text-decoration: none;
+    }
+    
+    .submenu a:hover {
+        background: #8d774a;
+        color: white;
+    }
+    
+}
+
+
+@media (max-width: 750px) {
+    .menu-text {
+        display: none; 
+    }
+}
+
+@media (min-width: 751px) {
+    .fa-solid {
+        display: none; 
+    }
+}
+
+
+
+.container-iframe {
+    display: flex; 
+    flex-direction: column;
+    align-items: center; 
+    gap: 0px; 
+    margin-top: 20px;
+}
+
+.taburi-iframe {
+    display: flex;
+    justify-content: center; 
+    gap: 10px; 
+}
+
+.taburi-iframe a {
+    text-decoration: none;
+    background-color: #eac85a;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.taburi-iframe a:hover {
+    background-color: #c0a13d;
+}
+iframe{
+    padding: 0;
+    margin-top: 0;
+}
+
+
+table {
+    width: 60%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 18px;
+    text-align: left;
+    max-height: 300px;
+    overflow: auto; 
+    display: block; 
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+tr:nth-child(odd) {
+    background-color: #f2f2f2;
+}
+
+tr:nth-child(even) {
+    background-color: #e6e6e6;
+}
+
+th {
+    background-color: #c0a13d;
+    color: white;
+}
+
+mi {
+    font-style: italic;
+}
+
+
+.hamburger-menu {
+    width: 40px;
+    height: 30px;
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.hamburger-menu span {
+    position: absolute;
+    width: 100%;
+    height: 5px;
+    background-color: rgb(255, 255, 255);
+    transition: 0.3s ease-in-out;
+}
+
+/* Poziționare pentru cele 3 bare */
+.hamburger-menu span:nth-child(1) {
+    top: 0;
+}
+
+.hamburger-menu span:nth-child(2) {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.hamburger-menu span:nth-child(3) {
+    bottom: 0;
+}
+
+#menu-toggle:checked + .hamburger .hamburger-menu span:nth-child(1) {
+    transform: translateY(12px) rotate(45deg);
+}
+
+#menu-toggle:checked + .hamburger .hamburger-menu span:nth-child(2) {
+    opacity: 0;
+}
+
+#menu-toggle:checked + .hamburger .hamburger-menu span:nth-child(3) {
+    transform: translateY(-12px) rotate(-45deg);
 }

@@ -13,34 +13,49 @@
         <link rel="apple-touch-icon" sizes="180x180" href="./Resurse/Imagini/favicon/apple-touch-icon.png" />
         <link rel="manifest" href="./Resurse/Imagini/favicon/site.webmanifest" />
         <link rel="stylesheet" href="style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Fleur+De+Leah&family=Roboto:wght@100&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://kit.fontawesome.com/0d3361ddd0.js" crossorigin="anonymous"></script>
     </head>
     <body>
         <header>
             <h1>Steakhouse</h1>
+            
+            <input type="checkbox" id="menu-toggle">
+            <label for="menu-toggle" class="hamburger">
+                <div class="hamburger-menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </label>
+            
             <nav>
                 <ul class="menu">
-                    <li><a href="#">Home</a>
+                    <li><a href="#"><i class="fa-solid fa-house"><span class="menu-text">Home</span></i></a>
                         <ul class="submenu">
                             <li><a href="#introduction">Our Restaurant</a></li>
                             <li><a href="#inspiration">Inspiration</a></li>
                         </ul>
                     </li>
-                    <li><a href="#menu">Menu</a>
+                    <li><a href="#menu"><i class="fa-solid fa-utensils"></i><span class="menu-text">Menu</span></a>
                         <ul class="submenu">
                             <li><a href="#food">Food</a></li>
                             <li><a href="#drinks">Drinks</a></li>
                         </ul>
                     </li>   
-                    <li><a href="#gallery">Gallery</a></li>
-                    <li><a href="#rezervations">Rezervations</a></li>
-                    <li><a href="#events-offers">Events & Offers</a>
+                    <li><a href="#gallery"><i class="fa-solid fa-image"></i><span class="menu-text">Gallery</span></a></li>
+                    <li><a href="#rezervations"><i class="fa-solid fa-calendar"></i><span class="menu-text">Rezervations</span></a></li>
+                    <li><a href="#events-offers"><i class="fa-solid fa-ticket"></i><span class="menu-text">Events & Offers</span></a>
                         <ul class="submenu">
                             <li><a href="#new">New Things</a></li>
                             <li><a href="#events">Events</a></li>
                             <li><a href="#offers">Offers</a></li>
                         </ul>
                     </li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#contact"><i class="fa-solid fa-circle-user"></i><span class="menu-text">Contact</span></a></li>
                 </ul>
             </nav>            
         </header>
@@ -68,11 +83,11 @@
                         <math xmlns="http://www.w3.org/1998/Math/MathML">
                             <mi>t</mi>
                             <mo>=</mo>
-                            <mi>k</mi>
-                            <mo>&#x22C5;</mo>
+                            <mi mathvariant="bold">k</mi>
+                            <mo>&#x22C5;</mo> <!-- multiply -->
                             <msup>
-                            <mi>d</mi>
-                            <mn>2</mn>
+                                <mi mathvariant="bold">d</mi>
+                                <mn>2</mn>
                             </msup>
                         </math>
                     </aside>
@@ -350,6 +365,68 @@
                     </map>
                 </section>
             </div>
+            <section>
+                <div class="container-iframe">
+                    <div class="taburi-iframe">
+                        <a href="https://www.youtube.com/embed/r2tuI8uyzA8?si=95KVeDzQFAxzVP5X" target="ifr-video">Video 1</a>
+                        <a href="https://www.youtube.com/embed/r2tuI8uyzA8?si=95KVeDzQFAxzVP5X" target="ifr-video" >Video 2</a>
+                    </div>      
+                    <iframe name="videoFrame" width="560" height="315" src="https://www.youtube.com/embed/r2tuI8uyzA8?si=95KVeDzQFAxzVP5X" title="YouTube video player" frameborder="0" allowfullscreen></iframe>   
+                </div>
+            </section>
+            <section>
+                <table>
+                    <tr>
+                        <th>Preparat</th>
+                        <th>Cantitate</th>
+                        <th>Calorii</th>
+                        <th>Preț</th>
+                    </tr>
+                    <tr>
+                        <td>Ribeye Steak</td>
+                        <td>300g</td>
+                        <td>750 kcal</td>
+                        <td>80 lei</td>
+                    </tr>
+                    <tr>
+                        <td>Filet Mignon</td>
+                        <td>250g</td>
+                        <td>600 kcal</td>
+                        <td>95 lei</td>
+                    </tr>
+                    <tr>
+                        <td>T-Bone Steak</td>
+                        <td>400g</td>
+                        <td>1000 kcal</td>
+                        <td>120 lei</td>
+                    </tr>
+                    <tr>
+                        <td>BBQ Ribs</td>
+                        <td>500g</td>
+                        <td>1100 kcal</td>
+                        <td>90 lei</td>
+                    </tr>
+                    <tr>
+                        <td>Grilled Chicken Breast</td>
+                        <td>200g</td>
+                        <td>400 kcal</td>
+                        <td>45 lei</td>
+                    </tr>
+                    <tr>
+                        <td>Grilled Chicken Breast</td>
+                        <td>200g</td>
+                        <td>400 kcal</td>
+                        <td>45 lei</td>
+                    </tr>
+                    <tr>
+                        <td>Grilled Chicken Breast</td>
+                        <td>200g</td>
+                        <td>400 kcal</td>
+                        <td>45 lei</td>
+                    </tr>
+                </table>                             
+            </section>
+
         </main>
         <footer>
             <p><a href="#">Home</a></p>
@@ -361,6 +438,7 @@
                 <p>Chat: <a href="skype:live:steakhouse?chat">Skype</a></p>
             </address>
             <small>&copy; <time datetime="2025-02-25">25 february 2025</time> Steakhouse</small>
+            <a href="#" id="link-top"><div id="triunghi"></div></a>
         </footer>
     </body>
 </html>
