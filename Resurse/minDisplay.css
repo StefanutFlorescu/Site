@@ -89,7 +89,7 @@
 
     
 
-    /* Hide menu by default, make it a column layout */
+    
     .menu {
         position: absolute;
         flex-direction: column;
@@ -112,13 +112,12 @@
         transition: all 2s ease-in-out;
     }
 
-    /* Ensure menu items take full width */
+    
     .menu li {
         display: block; 
         width: 100%;
     }
     
-    /* Style menu links */
     .menu a {
         display: block;
         width: 100%;
@@ -129,14 +128,12 @@
         transition: all 0.3s ease-in-out;
     }
     
-    /* Highlight menu links on hover */
     .menu a:hover {
         background: #c2a676;
         color: #fff;
     }
 
 
-    /* Style submenu */
     .submenu {
         list-style: none;
         padding: 0;
@@ -145,18 +142,16 @@
         top: 100%;
         left: 0;
         background: #fdfaf5;
-        display: none; /* Ensure submenu is hidden by default */
+        display: none; 
         min-width: 180px;
         border-radius: 5px;
         box-shadow: 0px 4px 6px rgba(194, 166, 118, 0.4);
     }
     
-    /* Ensure submenu width consistency */
     .submenu {
         width: 100%;
     }
 
-    /* Define submenu styles (duplicated rule, should be removed or merged) */
     .submenu {
         display: none;
         position: absolute;
@@ -165,16 +160,14 @@
         width: 100%; 
         background-color: #c2a676;
         box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-        z-index: 1000; /* Ensures submenu appears above other elements */
+        z-index: 1000; 
     }
     
-    /* Make submenu items block-level */
     .submenu li {
         display: block;
         width: 100%;
     }
     
-    /* Style submenu links */
     .submenu a {
         display: block;
         padding: 12px 20px;
@@ -183,36 +176,31 @@
         text-decoration: none;
     }
     
-    /* Highlight submenu links on hover */
     .submenu a:hover {
         background: #8d774a;
         color: white;
     }
 
-    /* Hide menu text (potentially unused class) */
     .menu-text {
         display: none;
     }
 }
 
-
 .hamburger-menu {
     width: 40px;
     height: 30px;
-    position: relative;
-    cursor: pointer;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    transition: all 0.4s ease-in-out;
+    position: relative;
+    cursor: pointer;
 }
 
 .hamburger-menu span {
-    position: absolute;
     width: 100%;
     height: 5px;
-    background-color: rgb(255, 255, 255);
-    transition: background-color 0.5s ease-in-out, transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    background-color: white;
+    transition: all 0.5s ease-in-out;
 }
 
 .hamburger-menu span:nth-child(1) {
@@ -238,12 +226,12 @@
     0% {
         transform: scaleX(0);
         opacity: 0;
-        background-color: rgba(255, 255, 255, 0.3);
+        background-color: rgba(255, 0, 0, 0.3);
     }
     50% {
         transform: scaleX(1.2);
         opacity: 0.7;
-        background-color: rgba(255, 255, 255, 0.8);
+        background-color: rgba(213, 145, 51, 0.8);
     }
     100% {
         transform: scaleX(1);
@@ -252,7 +240,6 @@
     }
 }
 
-/* Animatie la activare */
 #menu-toggle:checked + .hamburger .hamburger-menu span:nth-child(1) {
     animation: bar-top 0.6s ease-in-out forwards;
 }

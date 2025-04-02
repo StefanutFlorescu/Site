@@ -1,0 +1,190 @@
+@media (max-width: 750px) {
+    :root {
+        --page-padding: 20px;
+        --grid-gap: 10px;
+        font-size: 15px;
+    }
+
+    #grid-pagina {
+        grid-template-columns: 100%;
+        grid-template-areas: 
+            "introduction"
+            "inspiration"
+            "apart"
+            "menu"
+            "gallery"
+            "events-offers"
+            "femd"
+            "demd"
+            "rezervations"
+            "map"
+            "faq";
+    }
+
+    #apart {
+        grid-area: apart;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-areas: "fpic1" "set" "fpic2";
+        margin-bottom: 50%;
+    }
+
+    header {
+        font-size: 1.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        padding: 0.5rem;
+
+        h1 {
+            margin: 0;
+        }
+    }
+
+    nav {
+        margin: 0;
+        padding: 0;
+
+        ul {
+            padding: 0.1rem;
+
+            li {
+                margin: 0;
+            }
+        }
+    }
+
+    img {
+        max-width: 100%;
+    }
+
+    main {
+        max-width: 90%;
+    }
+
+    .hamburger {
+        display: block;
+        position: absolute;
+        left: 15px;
+        font-size: 2rem;
+        cursor: pointer;
+        color: white;
+    }
+
+    .menu {
+        position: absolute;
+        flex-direction: column;
+        top: 100%;
+        left: -100%;
+        width: 100%;
+        background-color: #333;
+        padding: 10px;
+        text-align: center;
+        clip-path: polygon(0% 0%, 0% 100%, 40% 100%, 100% 50%, 40% 0%);
+        transform: translateX(0);
+        transform-origin: left;
+        transition: transform 2s ease-in-out, clip-path 2s ease-in-out;
+    }
+
+    #menu-toggle:checked + .hamburger + nav .menu {
+        transform: translateX(100%);
+        clip-path: polygon(0% 0%, 0% 100%, 100% 100%, 100% 50%, 100% 0%);
+        display: flex;
+        transition: all 2s ease-in-out;
+    }
+
+    .menu {
+        li {
+            display: block;
+            width: 100%;
+        }
+
+        a {
+            display: block;
+            width: 100%;
+            padding: 12px 20px;
+            color: #8d774a;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease-in-out;
+
+            &:hover {
+                background: #c2a676;
+                color: #fff;
+            }
+        }
+    }
+
+    .submenu {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: #fdfaf5;
+        display: none;
+        min-width: 180px;
+        border-radius: 5px;
+        box-shadow: 0px 4px 6px rgba(194, 166, 118, 0.4);
+        width: 100%;
+
+        li {
+            display: block;
+            width: 100%;
+        }
+
+        a {
+            display: block;
+            padding: 12px 20px;
+            text-align: left;
+            color: #6b562f;
+            text-decoration: none;
+
+            &:hover {
+                background: #8d774a;
+                color: white;
+            }
+        }
+    }
+
+    .menu-text {
+        display: none;
+    }
+}
+
+.hamburger-menu {
+    width: 40px;
+    height: 30px;
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.4s ease-in-out;
+
+    span {
+        position: absolute;
+        width: 100%;
+        height: 5px;
+        background-color: rgb(255, 255, 255);
+        transition: background-color 0.5s ease-in-out, transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    }
+
+    span:nth-child(1) {
+        top: 0;
+        animation: bar-appear 0.6s ease-in-out forwards;
+    }
+
+    span:nth-child(2) {
+        top: 50%;
+        transform: translateY(-50%);
+        animation: bar-appear 0.6s ease-in-out forwards 100ms;
+    }
+
+    span:nth-child(3) {
+        bottom: 0;
+        animation: bar-appear 0.6s ease-in-out forwards 200ms;
+    }
+}
