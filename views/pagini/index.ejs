@@ -1,0 +1,390 @@
+<!DOCTYPE html><!-- Daca nu scrii asta, posibil sa mearga diferit in functie de browser -->
+<html lang="en"><!-- Nu se identifica bine?? nu se mai pacaleste crawler-ul-->
+    <head><!-- Inf despre pagina -->
+        <title>Steakhouse</title>
+        <meta name="keywords" content="steakhouse, vita, carne, restaurant, rezervare, meniu"><!--cuvintele cheie ale paginii; majoritatea motoarelor de căutare ignoră keywords -->
+        <meta name="description" content="Restaurant de tip Steakhouse"><!-- descrierea paginii, adesea apare sub link când sunt afișate rezultatele căutării -->
+        <%- include("../fragmente/head.ejs") %>
+    </head>
+    <body>
+        <%- include("../fragmente/header.ejs") %>
+        <main>
+            <div id = "grid-pagina">
+                <section id="introduction">
+                    <h3>Welcome to Our Premium Steakhouse!</h3>
+                    <p>At our steakhouse, we serve the finest cuts of meat, grilled to perfection, offering a dining experience like no other.</p>
+                    <p>Inspired by the best steakhouses in the world, from <strong>Outback Steakhouse</strong> to <strong>Longhorn Steakhouse</strong>, we bring you a menu filled with premium juicy steaks, succulent sides, and a selection of fine wines to complement your meal.</p>
+                    <p>Our signature dishes include tender filet mignon, and our house-special ribeye, each cooked with precision to bring out the rich, juicy flavors.</p>
+                    <p>Whether you're in the mood for a classic American steak or a Brazilian steakhouse experience, our menu has something for everyone.</p>
+                    <p>Located in the heart of the city, our steakhouse is perfect for romantic dinners, business meetings, or family gatherings. If you're searching for the <strong>best steakhouse near me</strong>, you've found it!</p>
+                    <p>Come and discover why we are among the top choices for steak lovers. Visit us today and indulge in a feast of perfectly grilled steaks and gourmet sides.</p>
+                </section>
+                
+                <section id="inspiration">
+                    <h3>Why Choose Our Steakhouse?</h3>
+                    <p>We take pride in offering a premium steakhouse experience, inspired by renowned names like <strong><a href = "https://www.mortons.com/" target="_blank">Morton's Steakhouse</a></strong>, <strong><a href = "https://perryssteakhouse.com/" target="_blank">Perry's Steakhouse</a></strong>, and <strong><a href = "https://wolfgangssteakhouse.net/" target="_blank">Wolfgang Steakhouse</a></strong>.</p>
+                    <p>Did you know? <i>The Maillard reaction</i> is responsible for the delicious crust on a perfectly grilled steak. This chemical reaction occurs between amino acids and reducing sugars when exposed to high heat, creating complex flavors and a rich brown color. It's the same reaction that gives toasted bread and roasted coffee their distinct taste!</p>
+                    <p>The perfect Steak formula!</p>
+                    <p>T - time</p>
+                    <p>D - the thickness of the steak</p>
+                    <p>K - constant</p>
+                    <aside>
+                        <math xmlns="http://www.w3.org/1998/Math/MathML">
+                            <mi>t</mi>
+                            <mo>=</mo>
+                            <mi mathvariant="bold">k</mi>
+                            <mo>&#x22C5;</mo> <!-- multiply -->
+                            <msup>
+                                <mi mathvariant="bold">d</mi>
+                                <mn>2</mn>
+                            </msup>
+                        </math>
+                    </aside>
+                </section>
+
+                <section id="apart">
+                    <section id="fpic1">
+                        <picture class="pic">
+                            <img src="./Resurse/Imagini/Osho.jpg" alt="Delicious Steak">
+                        </picture>
+                    </section>
+                    <section id="set">
+                    <p>What sets us apart?</p>
+                    <ol>
+                        <li><strong>High-Quality Meat</strong> - We source the best cuts from top-tier farms, ensuring a rich and flavorful taste.</li>
+                        <li><strong>Expert Grilling</strong> - Our chefs have years of experience in preparing steaks to perfection.</li>
+                        <li><strong>Authentic Ambience</strong> - Our restaurant offers a cozy, elegant setting, making every visit special.</li>
+                        <li><strong>Exclusive Wine Pairings</strong> - Enjoy your steak with the perfect wine selection, curated by our sommeliers.</li>
+                    </ol>
+                    <p>From <strong>Japanese steakhouse</strong> specialties to the rich flavors of <strong>Brazilian steakhouse</strong> grills, we bring a world of flavors to your table.</p>
+                    <p>If you're searching for an unforgettable steakhouse experience, come visit us and taste the difference!</p>
+                    </section>
+                    <section id="fpic2">
+                        <picture class="pic">
+                            <img src="./Resurse/Imagini/OSHO-43-1.jpg" alt="Delicious Steak">
+                        </picture>
+                    </section>
+                </section>
+            
+                <section id="menu">
+                    <h2>Menu</h2>
+                    <section id="food">
+                        <h3>Food</h3>
+                        <section>
+                            <h4>Appetizers</h4>
+                            <ul>
+                                <li><b>BEEF TARTAR (120g) 115 lei</b>
+                                    <p>Beef, butter, pickles, capers, egg, onion, ketchup, mustard</p>
+                                </li>
+                                <li><b>BURRATA PLATE (350g) 72 lei</b>
+                                    <p>Burrata with tomatoes, mix salad and pesto</p>
+                                </li>
+                                <li><b>PROSCIUTTO & MELONE (200g) 42 lei</b></li>
+                                <li><b>SHRIMP COCKTAIL (250g) 85 lei</b>
+                                    <p>Fresh shrimp, cocktail sauce, lemon, herbs</p>
+                                </li>
+                                <li><b>BRUSCHETTA TRIO (200g) 35 lei</b>
+                                    <p>Tomato & basil, truffle & mushroom, prosciutto & parmesan</p>
+                                </li>
+                            </ul>
+                        </section>
+                        <section>
+                            <h4>Soups</h4>
+                            <ul>
+                                <li><b>FRENCH ONION SOUP (300ml) 38 lei</b>
+                                    <p>Caramelized onions, beef broth, melted cheese, croutons</p>
+                                </li>
+                                <li><b>TOMATO & BASIL SOUP (300ml) 32 lei</b>
+                                    <p>Fresh tomatoes, basil, cream, parmesan</p>
+                                </li>
+                            </ul>
+                        </section>
+                        <section>
+                            <h4>Salads</h4>
+                            <ul>
+                                <li><b>HOUSE SALAD (350g) 40 lei</b>
+                                    <p>Burrata with tomatoes, mix salad and pesto</p>
+                                </li>
+                                <li><b>RUCOLA CHICKEN SALAD (400g) 58 lei</b>
+                                    <p>Rucola, chicken breast, cherry tomatoes, parmesan and balsamic vinegar</p>
+                                </li>
+                                <li><b>STEAK SALAD (400g) 106 lei</b>
+                                    <p>Beef Fillet, mix salad, cherry tomatoes, avocado, red beans, corn, red pepper, parmesan, pesto and balsamic cream</p>
+                                </li>
+                            </ul>
+                        </section>
+                        <section>
+                            <h4>Pasta & Risotto</h4>
+                            <ul>
+                                <li><b>TRUFFLE PASTA (350g) 78 lei</b>
+                                    <p>Homemade pasta, black truffle, cream, parmesan</p>
+                                </li>
+                                <li><b>SEAFOOD RISOTTO (350g) 89 lei</b>
+                                    <p>Arborio rice, shrimp, mussels, calamari, saffron</p>
+                                </li>
+                            </ul>
+                        </section>
+                        <section>
+                            <h4>Steaks</h4>
+                            <section>
+                                <h5>Aged in House</h5>
+                                <ul>
+                                    <li><b>T-BONE STEAK (500g) 292 lei</b></li>
+                                    <li><b>NEW YORK STEAK (350g) 184 lei</b></li>
+                                    <li><b>JERSEY STEAK (400g) 225 lei</b></li>
+                                    <li><b>DELMONICO STEAK (300g) 155 lei</b></li>
+                                </ul>
+                            </section>
+                        </section>
+                        <section>
+                            <h4>Desserts</h4>
+                            <ul>
+                                <li><b>CHOCOLATE LAVA CAKE (200g) 45 lei</b>
+                                    <p>Molten chocolate, vanilla ice cream</p>
+                                </li>
+                                <li><b>TIRAMISU (250g) 38 lei</b>
+                                    <p>Mascarpone, coffee-soaked ladyfingers, cocoa</p>
+                                </li>
+                            </ul>
+                        </section>
+                    </section>
+                    <section id="drinks">
+                        <h3>Drinks</h3>
+                        <section>
+                            <h4>Non-Alcoholic</h4>
+                            <ul>
+                                <li><b>Fresh Orange Juice (300ml) 20 lei</b></li>
+                                <li><b>Homemade Lemonade (400ml) 22 lei</b></li>
+                                <li><b>Iced Tea (400ml) 18 lei</b></li>
+                                <li><b>Sparkling Water (500ml) 12 lei</b></li>
+                                <li><b>Still Water (500ml) 12 lei</b></li>
+                            </ul>
+                        </section>
+                        <section>
+                            <h4>Coffee & Tea</h4>
+                            <ul>
+                                <li><b>Espresso 15 lei</b></li>
+                                <li><b>Cappuccino 18 lei</b></li>
+                                <li><b>Latte Macchiato 20 lei</b></li>
+                                <li><b>English Breakfast Tea 16 lei</b></li>
+                                <li><b>Green Tea 16 lei</b></li>
+                            </ul>
+                        </section>
+                        <section>
+                            <h4>Alcoholic Beverages</h4>
+                            <ul>
+                                <li><b>House Red Wine (150ml) 25 lei</b></li>
+                                <li><b>House White Wine (150ml) 25 lei</b></li>
+                                <li><b>Draft Beer (500ml) 18 lei</b></li>
+                                <li><b>Craft Beer (330ml) 28 lei</b></li>
+                                <li><b>Classic Mojito (300ml) 35 lei</b></li>
+                                <li><b>Aperol Spritz (300ml) 38 lei</b></li>
+                            </ul>
+                        </section>
+                        <section>
+                            <h4>Signature Cocktails</h4>
+                            <ul>
+                                <li><b>Old Fashioned (200ml) 42 lei</b>
+                                    <p>Bourbon, bitters, sugar, orange peel</p>
+                                </li>
+                                <li><b>Negroni (200ml) 39 lei</b>
+                                    <p>Gin, Campari, vermouth</p>
+                                </li>
+                                <li><b>Margarita (250ml) 37 lei</b>
+                                    <p>Tequila, lime juice, Cointreau</p>
+                                </li>
+                            </ul>
+                        </section>
+                        <section>
+                            <h4>Premium Spirits</h4>
+                            <ul>
+                                <li><b>Hennessy VS (50ml) 45 lei</b></li>
+                                <li><b>Glenfiddich 12 (50ml) 50 lei</b></li>
+                                <li><b>Belvedere Vodka (50ml) 38 lei</b></li>
+                            </ul>
+                        </section>
+                    </section>
+                </section>                
+
+                <section id="gallery">
+                    <section>
+                        <h2>Gallery</h2>
+                        <picture class="pic">
+                            <img src="./Resurse/Imagini/OSHO-144-1-600x900.jpg" alt="Delicious Steak">
+                        </picture>
+                        <picture class="pic">
+                            <img src="./Resurse/Imagini/OSHO-219-1-600x900.jpg" alt="Delicious Steak">
+                        </picture>
+                        <picture class="pic">
+                            <img src="./Resurse/Imagini/OSHO-304-1-600x900.jpg" alt="Delicious Steak">
+                        </picture>
+                        <figure class="pic">
+                            <picture>
+                                <source srcset="./Resurse/Imagini/Steak_Small.png" media="(max-width: 600px)">
+                                <source srcset="./Resurse/Imagini/Steak_Med.png" media="(max-width: 1024px)">
+                                <img src="./Resurse/Imagini/Steak.png" alt="Delicious Steak">
+                            </picture>
+                            <figcaption>Perfect Steak every time!</figcaption>
+                        </figure>
+                    </section>
+                </section>
+                
+                <section id="rezervations">
+                    <h2>Rezervations</h2>
+                    <p>Make a rezervation!</p>
+                </section>
+
+                <section id = "events-offers">
+                    <h2>Events & Offers</h2>
+        
+                    <article id = "new">
+                        <h3>New Things</h3>
+                        <p><strong>New arrivals in our menu!</strong> We've just introduced some exciting new dishes for you to try!</p>
+                        <blockquote>
+                            "A fresh taste of summer with our new grilled vegetables and juicy steaks!"
+                        </blockquote>
+                        <p>Come and discover the <em>latest</em> offerings at our restaurant!</p>
+                    </article>
+        
+                    <section id = "events">
+                        <h3>Events</h3>
+                        <dl>
+                            <dt><abbr title="Special Promotion Evening">SPE</abbr></dt>
+                            <dd>Join us for an evening of special promotions and discounts on all our dishes! It's happening every Friday evening from 6:00 PM.</dd>
+        
+                            <dt><dfn title="Live Music Event">LME</dfn></dt>
+                            <dd>Enjoy live jazz music while savoring your favorite meal. Every Saturday night from 8:00 PM!</dd>
+                        </dl>
+                    </section>
+        
+                    <section id = "offers">
+                        <h3>Offers</h3>
+                        <p><strong><s>20% off on your first visit</s></strong></p>
+                        <p><ins>Now 30% off on selected steaks!</ins> Don't miss out on our special offer for this week.</p>
+                        <p>Remember, if you're a <abbr title="Loyalty Member">LM</abbr>, you'll always receive additional discounts on all our dishes.</p>
+                    </section>
+                </section>
+
+                <section id="faq">
+                    <h2>FAQ</h2>
+                    <details>
+                        <summary><q>What is a steakhouse?</q></summary>
+                        <p>A steakhouse is a restaurant specialized in preparing and serving beef steaks, cooked in various styles.</p>
+                    </details>
+                    
+                    <details>
+                        <summary><q>What are the most popular types of beef steak?</q></summary>
+                        <p>The most popular types are Ribeye, T-Bone, Filet Mignon, New York Strip, and Porterhouse.</p>
+                    </details>
+                    
+                    <details>
+                        <summary><q>How should a steak be cooked properly?</q></summary>
+                        <p>A good steak should be cooked at high temperatures to form a caramelized crust, while the inside remains juicy. The doneness levels include rare, medium-rare, medium, medium-well, and well-done.</p>
+                    </details>
+                    
+                    <details>
+                        <summary><q>What are the best side dishes for a steak?</q></summary>
+                        <p>Some of the most popular side dishes include French fries, mashed potatoes, grilled vegetables, salads, and butter or pepper-based sauces.</p>
+                    </details>
+                    
+                    <details>
+                        <summary><q>What is the most tender cut of beef?</q></summary>
+                        <p>Filet Mignon is considered the most tender cut of beef because it comes from a part of the muscle that is less used.</p>
+                    </details>
+                </section>
+
+                <section id="demd">
+                    <a href="./Resurse/Tema.pdf" download>Descarcă PDF</a>
+                </section>
+                <section id="femd">
+                    <embed src="./resurse/Tema.pdf" width="100%" type="application/pdf">
+                </section>
+
+                <section id = "map">
+                    <h2>Interactive map</h2>
+                
+                    <img src="./Resurse/Imagini/OSHO-369-1-600x900.jpg" usemap="#image-map" width="1155" height="1600" alt="Imagine interactivă">
+                
+                    <map name="image-map">
+                        <area shape="circle" coords="377,600,300" alt="Osho" href="https://osho-restaurant.ro" target="_blank">
+                        
+                        <area shape="circle" coords="880,1300,120" alt="Argentine" href="https://www.argentine.ro" target="_blank">
+                
+                        <area shape="circle" coords="200,1200,150" alt="Vacamuuu" href="https://vacamuuurestaurant.ro/ro" target="_blank">
+                    </map>
+                </section>
+            </div>
+            <section>
+                <div class="container-iframe">
+                    <div class="taburi-iframe">
+                        <a href="https://www.youtube.com/embed/r2tuI8uyzA8?si=95KVeDzQFAxzVP5X" target="ifr-video">Video 1</a>
+                        <a href="https://www.youtube.com/embed/r2tuI8uyzA8?si=95KVeDzQFAxzVP5X" target="ifr-video" >Video 2</a>
+                    </div>      
+                    <iframe name="videoFrame" width="560" height="315" src="https://www.youtube.com/embed/r2tuI8uyzA8?si=95KVeDzQFAxzVP5X" title="YouTube video player" frameborder="0" allowfullscreen></iframe>   
+                </div>
+            </section>
+            <section>
+                <table>
+                    <caption>Calorii Meniu</caption>
+                    <thead>
+                        <tr>
+                            <th>Preparat</th>
+                            <th>Cantitate</th>
+                            <th>Calorii</th>
+                            <th>Preț</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Ribeye Steak</td>
+                            <td>300g</td>
+                            <td>750 kcal</td>
+                            <td>80 lei</td>
+                        </tr>
+                        <tr>
+                            <td>Filet Mignon</td>
+                            <td>250g</td>
+                            <td>600 kcal</td>
+                            <td>95 lei</td>
+                        </tr>
+                        <tr>
+                            <td>T-Bone Steak</td>
+                            <td>400g</td>
+                            <td>1000 kcal</td>
+                            <td>120 lei</td>
+                        </tr>
+                        <tr>
+                            <td>BBQ Ribs</td>
+                            <td>500g</td>
+                            <td>1100 kcal</td>
+                            <td>90 lei</td>
+                        </tr>
+                        <tr>
+                            <td rowspan="3">Grilled Chicken Breast</td>
+                            <td>200g</td>
+                            <td>400 kcal</td>
+                            <td>45 lei</td>
+                        </tr>
+                        <tr>
+                            <td>250g</td>
+                            <td>500 kcal</td>
+                            <td>50 lei</td>
+                        </tr>
+                        <tr>
+                            <td>300g</td>
+                            <td>600 kcal</td>
+                            <td>55 lei</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="4">Total preparate: 5</td>
+                        </tr>
+                    </tfoot>
+                </table>                             
+            </section>
+
+        </main>
+        <%- include("../fragmente/footer.ejs") %>
+    </body>
+</html>

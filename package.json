@@ -1,0 +1,31 @@
+{
+  "name": "site",
+  "version": "1.0.0",
+  "description": "SteakHouse Presentation Site",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https:/StefanutFlorescu/Site.git"
+  },
+  "keywords": [
+    "Steak",
+    "Steakhouse",
+    "Restaurant",
+    "Meat",
+    "Expensive",
+    "Taste"
+  ],
+  "author": "Florescu Teodor Stefanut",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/StefanutFlorescu/Site/issues"
+  },
+  "homepage": "https://github.com/StefanutFlorescu/Site#readme",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^5.1.0"
+  }
+}
