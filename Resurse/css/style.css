@@ -586,3 +586,79 @@ msup mi {
 }
 
 
+#video-vtt {
+    width: 100%;
+    max-width: 800px;
+    min-width: 300px;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+  }
+  
+  video::cue {
+    background-color: rgba(0, 0, 0, 0.75); 
+    color: white;                         
+    text-align: left;                     
+    font-size: 1rem;
+  }
+
+
+  :root {
+    --culoare-link-vizitat: #c9934d; 
+    --culoare-pata: rgba(189, 119, 14, 0.3); 
+    --culoare-hover-simbol: crimson;
+  }
+  
+  body {
+    font-family: sans-serif;
+    padding: 2rem;
+    background-color: #f9f9f9;
+  }
+  
+  a {
+    color: rgb(246, 197, 63);
+    text-decoration: none;
+    position: relative;
+    transition: color 0.3s ease;
+  }
+  
+  
+  a:visited {
+    color: var(--culoare-link-vizitat);
+  }
+  
+  a[href^="http"]::before {
+    content: "⮳ ";
+    font-size: 1.5em; 
+    vertical-align: middle;
+    transition: color 0.3s ease;
+  }
+  
+  a[href^="http"]:hover::before {
+    color: var(--culoare-hover-simbol);
+  }
+  
+  main a {
+    background-image: radial-gradient(
+      circle,
+      var(--culoare-pata) 0%,
+      var(--culoare-pata) 40%,
+      transparent 80%,
+      transparent 100%
+    );
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 0%;
+    border-radius: 50%;
+    transition: background-size 0.5s ease;
+  }
+  
+  main a:hover {
+    background-size: 100%;
+  }
+  
+  main a:active {
+    border: 2px solid var(--culoare-link-vizitat);
+    border-radius: 4px;
+  }
+  
