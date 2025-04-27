@@ -1,0 +1,47 @@
+{
+	"cale_galerie": "resurse/imagini/galerie_steak",
+	"imagini": [
+	  {
+		"fisier_imagine": "vita1.jpg",
+		"nume_poza": "Vita",
+		"continut_alternativ": "Imagine steak de vita",
+		"descriere_poza": "Vita",
+		"intervale_zile": [["luni", "duminica"]]
+	  },
+	  {
+		"fisier_imagine": "vita2.jpg",
+		"nume_poza": "Vita",
+		"continut_alternativ": "Imagine steak de vita",
+		"descriere_poza": "Vita",
+		"intervale_zile": [["luni", "miercuri"], ["sambata", "sambata"]]
+	  },
+	  {
+		"fisier_imagine": "vita3.jpg",
+		"nume_poza": "Vita",
+		"continut_alternativ": "Imagine steak de vita",
+		"descriere_poza": "Vita",
+		"intervale_zile": [["luni", "miercuri"], ["sambata", "duminica"]]
+	  },
+	  {
+		"fisier_imagine": "vita4.jpg",
+		"nume_poza": "Vita",
+		"continut_alternativ": "Imagine steak de vita",
+		"descriere_poza": "Vita",
+		"intervale_zile": [["luni", "miercuri"], ["sambata", "duminica"]]
+	  },
+	  {
+		"fisier_imagine": "vita5.jpg",
+		"nume_poza": "Vita",
+		"continut_alternativ": "Imagine steak de vita",
+		"descriere_poza": "Vita",
+		"intervale_zile": [["luni", "miercuri"], ["sambata", "sambata"]]
+	  },
+	  {
+		"fisier_imagine": "vita6.jpg",
+		"nume_poza": "Vita",
+		"continut_alternativ": "Imagine steak de vita",
+		"descriere_poza": "Vita",
+		"intervale_zile": [["luni", "miercuri"], ["sambata", "sambata"]]
+	  }
+	]
+  }

@@ -1,0 +1,56 @@
+.galerie-animata {
+  position: relative;
+  overflow: hidden;
+  border: 20px solid transparent;
+  border-image: url("../imagini/border/border.png") 30 round;
+  padding: 10px;
+  height: 400px;
+  width: 80%;
+  margin: 0 auto;
+}
+.galerie-animata .imagine-galerie {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.galerie-animata .imagine-galerie img {
+  height: 100%;
+  transition: transform 0.5s ease;
+}
+.galerie-animata .imagine-galerie.active {
+  opacity: 1;
+  animation: slide 3s ease-in-out forwards;
+}
+.galerie-animata:hover .imagine-galerie.active {
+  animation-play-state: paused;
+}
+
+@keyframes slide {
+  0% {
+    transform: scaleY(1) rotate(0deg) translateX(0);
+  }
+  40% {
+    transform: scaleY(0.1) rotate(0deg) translateX(0);
+  }
+  50% {
+    transform: scaleY(0.1) rotate(90deg) translateX(100%);
+  }
+  90% {
+    transform: scaleY(1) rotate(90deg) translateX(100%);
+  }
+  100% {
+    transform: scaleY(1) rotate(180deg) translateX(0);
+  }
+}
+@media screen and (max-width: 768px) {
+  .galerie-animata {
+    display: none;
+  }
+}

@@ -11,7 +11,7 @@
         <main>
             <div id = "grid-pagina">
                 <section id="introduction">
-                    <h3>Welcome to Our Premium Steakhouse!</h3>
+                    <h3>Welcome to Our Premium Steakhouse!<p><b>Ip: <%- locals.ip %></b></p></h3>
                     <p>At our steakhouse, we serve the finest cuts of meat, grilled to perfection, offering a dining experience like no other.</p>
                     <p>Inspired by the best steakhouses in the world, from <strong>Outback Steakhouse</strong> to <strong>Longhorn Steakhouse</strong>, we bring you a menu filled with premium juicy steaks, succulent sides, and a selection of fine wines to complement your meal.</p>
                     <p>Our signature dishes include tender filet mignon, and our house-special ribeye, each cooked with precision to bring out the rich, juicy flavors.</p>
@@ -21,7 +21,7 @@
                 </section>
                 
                 <section id="inspiration">
-                    <h3>Why Choose Our Steakhouse?</h3>
+                    <h3 class="identificator-reflexie-text">Why Choose Our Steakhouse?</h3>
                     <p>We take pride in offering a premium steakhouse experience, inspired by renowned names like <strong><a href = "https://www.mortons.com/" target="_blank">Morton's Steakhouse</a></strong>, <strong><a href = "https://perryssteakhouse.com/" target="_blank">Perry's Steakhouse</a></strong>, and <strong><a href = "https://wolfgangssteakhouse.net/" target="_blank">Wolfgang Steakhouse</a></strong>.</p>
                     <p>Did you know? <i>The Maillard reaction</i> is responsible for the delicious crust on a perfectly grilled steak. This chemical reaction occurs between amino acids and reducing sugars when exposed to high heat, creating complex flavors and a rich brown color. It's the same reaction that gives toasted bread and roasted coffee their distinct taste!</p>
                     <p>The perfect Steak formula!</p>
@@ -396,7 +396,12 @@
 
                 Videoclipul nu poate fi redat în acest browser.
             </video>
+            <%- include("../fragmente/galerie.ejs") %>
+            <hr>
+            <h1 class="efect-css-reflexie-text" data-text="Salut!">Salut!</h1>
         </main>
-        <%- include("../fragmente/footer.ejs") %>
+        <div>
+            <%- include("../fragmente/footer.ejs") %>
+        </div>
     </body>
 </html>

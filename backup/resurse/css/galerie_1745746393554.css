@@ -1,0 +1,20 @@
+#grid-galerie {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px; 
+    padding: 20px;
+}
+
+#grid-galerie picture {
+    width: 100%;
+    height: auto;
+    display: block; /* adaugă ca să elimini spațiile moarte sub imagini */
+}
+
+#grid-galerie picture img {
+    width: 100%;
+    height: auto;
+    display: block; 
+    object-fit: cover; 
+    border-radius: 10px;
+}

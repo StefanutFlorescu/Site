@@ -1,0 +1,92 @@
+<div id="grid-galerie">
+    <%
+    if (!Array.isArray(imagini) || imagini.length === 0) {
+    %>
+        <p>Nu există imagini disponibile.</p>
+    <%
+    } else {
+        const d = new Date();
+        const ziua_curenta = d.getDay(); 
+        const zile_sapt = ["duminica", "luni", "marti", "miercuri", "joi", "vineri", "sambata"];
+        const zi_curenta = zile_sapt[ziua_curenta];
+        
+        const imaginiFiltrate = imagini.filter(imag => {
+            if (!imag.intervale_zile || imag.intervale_zile.length === 0) return true;
+            
+            return imag.intervale_zile.some(interval => {
+                if (!Array.isArray(interval) || interval.length < 2) return true;
+                
+                const zi_start_index = zile_sapt.indexOf(interval[0]);
+                const zi_final_index = zile_sapt.indexOf(interval[1]);
+                
+                if (zi_start_index === -1 || zi_final_index === -1) return true;
+                
+                if (zi_start_index <= zi_final_index) {
+                    return ziua_curenta >= zi_start_index && ziua_curenta <= zi_final_index;
+                } else {
+                    return ziua_curenta >= zi_start_index || ziua_curenta <= zi_final_index;
+                }
+            });
+        });
+    
+        if (imaginiFiltrate.length === 0) {
+    %>
+        <p>Nu există imagini disponibile pentru ziua curentă.</p>
+    <%
+        } else {
+            const total_imagini = imaginiFiltrate.length;
+            const coloane = 3;
+            let imag_index = 0;
+            let index = 0;
+            const cifre_romane = ["i", "ii", "iii", "iv", "v", "vi", "vii", "viii", "ix", "x", "xi", "xii", "xiii", "xiv", "xv"];
+            
+            while (imag_index < total_imagini) {
+                const pozitie_in_rand = index % coloane;
+                const rand = Math.floor(index / coloane);
+                let trebuie_div_gol = false;
+                
+                if (rand % 2 === 1) {
+                    if (pozitie_in_rand === Math.floor(coloane / 2)) {
+                        trebuie_div_gol = true;
+                    }
+                } else {
+                    if ((rand / 2) % 2 === 0) {
+                        if (pozitie_in_rand === coloane - 1) {
+                            trebuie_div_gol = true;
+                        }
+                    } else {
+                        if (pozitie_in_rand === 0) {
+                            trebuie_div_gol = true;
+                        }
+                    }
+                }
+                
+                if (trebuie_div_gol) {
+    %>
+    <div class="gol"></div>
+    <%
+                } else {
+                    if (imag_index < total_imagini) {
+                        const imag = imaginiFiltrate[imag_index++];
+    %>
+    <figure>
+        <picture>
+            <% if (imag.fisier_mediu) { %>
+            <source srcset="<%= imag.fisier_mediu %>" media="(max-width: 1000px)">
+            <% } %>
+            <img src="<%= imag.fisier %>" 
+                 alt="<%= imag.continut_alternativ || imag.nume || 'Imagine' %>" 
+                 title="<%= imag.descriere || imag.nume || 'Imagine' %>">
+        </picture>
+        <figcaption><%= cifre_romane[imag_index-1] %>. <%= imag.descriere || imag.nume || 'Imagine' %></figcaption>
+    </figure>
+    <%
+                    }
+                }
+                index++;
+            }
+        }
+    }
+    %>
+    </div>
+    

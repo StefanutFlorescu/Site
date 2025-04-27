@@ -1,0 +1,54 @@
+#galerie-animata {
+  display: flex;
+  overflow: hidden;
+  border: 10px solid transparent;
+  border-image: url("/resurse/imagini/border.png") 30 round;
+  width: 80vw;
+  height: 500px;
+  margin: auto;
+  position: relative;
+}
+#galerie-animata figure {
+  margin: 0;
+  min-width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform-origin: center;
+  animation: animatie-galerie 3s infinite linear;
+}
+#galerie-animata img {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: cover;
+}
+#galerie-animata:hover figure {
+  animation-play-state: paused;
+}
+
+@keyframes animatie-galerie {
+  0% {
+    transform: scaleY(1) rotateY(0deg);
+  }
+  40% {
+    transform: scaleY(0.1) rotateY(90deg);
+    opacity: 0;
+  }
+  41% {
+    transform: scaleY(0.1) rotateY(-90deg);
+    opacity: 0;
+  }
+  60% {
+    transform: scaleY(1) rotateY(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scaleY(1) rotateY(0deg);
+  }
+}
+@media screen and (max-width: 1000px) {
+  #galerie-animata {
+    display: none;
+  }
+}

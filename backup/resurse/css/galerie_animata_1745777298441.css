@@ -1,0 +1,45 @@
+.galerie-animata {
+  position: relative;
+  overflow: hidden;
+  border: 20px solid transparent;
+  border-image: url("../imagini/border/border.png") 30 round;
+  padding: 10px;
+  height: 400px;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.galerie-animata .imagine-galerie {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.8s ease; /* Tranziție mai lină */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.galerie-animata .imagine-galerie img {
+  height: 100%;
+  transition: transform 0.8s ease; /* Eventual putem anima și imaginea la hover */
+}
+
+/* Imagine activă */
+.galerie-animata .imagine-galerie.active {
+  opacity: 1;
+}
+
+/* Animație la hover pe imagine */
+.galerie-animata .imagine-galerie.active img:hover {
+  transform: scale(1.05); /* Zoom mic */
+}
+
+/* Responsive: pe telefoane ascundem galeria animată */
+@media screen and (max-width: 768px) {
+  .galerie-animata {
+    display: none;
+  }
+}

@@ -1,0 +1,33 @@
+#galerie-animata {
+  position: relative;
+  width: 80vw;
+  height: 500px;
+  margin: auto;
+  overflow: hidden;
+  border: 10px solid transparent;
+  border-image: url("/resurse/imagini/border.png") 30 round;
+}
+#galerie-animata .imagine-galerie {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  top: 0;
+  left: 0;
+  transition: opacity 1s ease, transform 1s ease;
+  opacity: 1;
+}
+#galerie-animata .ascunsa {
+  opacity: 0;
+  pointer-events: none;
+}
+#galerie-animata .animatie-iesire {
+  transform: scaleY(0.1) rotateY(90deg);
+  opacity: 0;
+}
+
+@media screen and (max-width: 1000px) {
+  #galerie-animata {
+    display: none;
+  }
+}
