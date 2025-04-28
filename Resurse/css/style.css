@@ -727,13 +727,13 @@ hr {
   .efect-css-reflexie-text::after {
     content: attr(data-text);
     position: absolute;
-    top: 70%;
+    top: 60%;
     left: 0;
     width: 100%;
     height: 100%;
     color: black;
-    transform: scaleY(-0.7);
-    opacity: 0.5;
+    transform: scaleY(-0.7) rotate(4deg);
+    opacity: 0.9;
     background: repeating-linear-gradient(
       to bottom,
       rgba(255, 255, 255, 0) 0px,
@@ -772,3 +772,98 @@ hr {
   }
 
 
+
+
+  #efect-css-duotone {
+    position: relative;
+    width: 400px;
+    height: 300px;
+    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzTA8ve1So_iGYhHbR98SrVadldOX3nL6VoA&s');
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  
+  #efect-css-duotone::before,
+  #efect-css-duotone::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    transition: transform 1s ease;
+    mix-blend-mode: screen; 
+  }
+  
+  #efect-css-duotone::before {
+    left: 0;
+    background-color: #ff0055; 
+    transform: translateX(-100%);
+  }
+  
+
+  #efect-css-duotone::after {
+    left: 0;
+    background-color: #0055ff; 
+    transform: translateX(100%); 
+  }
+  
+  #efect-css-duotone:hover::before,
+  #efect-css-duotone:hover::after {
+    transform: translateX(0);
+  }
+  
+
+  .text-coloane {
+    column-count: 2;
+    column-gap: 40px; 
+    column-rule: 2px solid gray; 
+    font-size: 18px;
+    padding: 20px;
+  }
+  
+
+  @media (max-width: 750px) {
+    .text-coloane {
+      column-count: 1; 
+    }
+  }
+
+  :root {
+    --culoare-fundal-selectie: var(--auriu);
+    --culoare-text-selectie: var(--fundal-main);   
+  }
+  ::selection {
+    background-color: var(--culoare-fundal-selectie);
+    color: var(--culoare-text-selectie);
+  }
+
+
+
+  .container-text {
+    width: 100%;
+    overflow: hidden; 
+    white-space: nowrap; 
+    background: #f0f0f0; 
+    padding: 10px 0;
+    position: relative;
+  }
+  
+  .text-animat {
+    display: inline-block;
+    padding-left: 100%; 
+    animation: plimbare 10s linear infinite;
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  @keyframes plimbare {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }

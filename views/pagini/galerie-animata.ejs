@@ -1,56 +1,27 @@
-<% if (Array.isArray(imagini) && imagini.length > 0) { %>
-    <div id="galerie-animata">
-        <% imagini.forEach((imagine, idx) => { %>
-            <img class="imagine-galerie <% if (idx !== 0) { %> ascunsa <% } %>" 
-                 src="<%= imagine.fisier %>" 
-                 alt="<%= imagine.continut_alternativ || imagine.nume || 'Imagine' %>">
-        <% }) %>
-    </div>
-    
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galerie Animată - Steak</title>
     <link rel="stylesheet" href="/resurse/css/galerie-animata.css">
-    
-    <script>
-        const imagini = document.querySelectorAll('.imagine-galerie');
-        let indexCurent = 0;
-        let intervalGalerie;
-        let animating = false;
-    
-        function schimbaImagine() {
-            if (animating) return;
-            animating = true;
-    
-            const imagineCurenta = imagini[indexCurent];
-            imagineCurenta.classList.add('animatie-iesire');
-    
-            setTimeout(() => {
-                imagineCurenta.classList.add('ascunsa');
-                imagineCurenta.classList.remove('animatie-iesire');
-    
-                indexCurent = (indexCurent + 1) % imagini.length;
-    
-                const urmatoareaImagine = imagini[indexCurent];
-                urmatoareaImagine.classList.remove('ascunsa');
-    
-                animating = false;
-            }, 1000); // la 1 secunda se termină animația
-        }
-    
-        function startAnimatie() {
-            intervalGalerie = setInterval(schimbaImagine, 3000); // la fiecare 3 secunde
-        }
-    
-        function opresteAnimatie() {
-            clearInterval(intervalGalerie);
-        }
-    
-        const galerie = document.getElementById('galerie-animata');
-        galerie.addEventListener('mouseenter', opresteAnimatie);
-        galerie.addEventListener('mouseleave', startAnimatie);
-    
-        startAnimatie();
-    </script>
-    
+</head>
+<body>
+
+    <h1>Galeria de Steak</h1>
+
+    <% if (imagini && imagini.length > 0) { %>
+        <div id="galerie-animata">
+            <% for (let img of imagini) { %>
+                <img src="<%= cale_galerie %>/<%= img.fisier_imagine %>" 
+                     alt="<%= img.continut_alternativ %>" 
+                     title="<%= img.descriere_poza %>">
+            <% } %>
+        </div>
     <% } else { %>
-        <p>Nu există imagini disponibile.</p>
+        <p>Nu sunt imagini disponibile momentan.</p>
     <% } %>
-    
+
+    <script src="/resurse/js/galerie.js"></script>
+</body>
+</html>

@@ -15,8 +15,9 @@
   height: 100%;
   object-fit: cover;
   opacity: 0;
-  transform: scaleY(1);
+  transform: scaleY(1) rotate(0deg);
   transition: transform 1s ease, opacity 1s ease;
+  z-index: 1;
 }
 #galerie-animata img.active {
   opacity: 1;

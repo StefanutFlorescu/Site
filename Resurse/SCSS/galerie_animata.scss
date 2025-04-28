@@ -1,39 +1,37 @@
 #galerie-animata {
-    position: relative;
-    width: 80vw;
-    height: 500px;
-    margin: 30px auto;
+    position: relative;  
+    width: 600px;         
+    height: 400px;
+    margin: 0 auto;
     overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     border: 20px solid transparent;
-    border-image: url('/resurse/imagini/border-galerie.png') 30 round;
-}
-
-.imagine-galerie {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 1s ease, opacity 1s ease;
-    transform: scale(1);
-    opacity: 1;
-}
-
-.ascunsa {
-    opacity: 0;
-    pointer-events: none;
-}
-
-.animatie-iesire {
-    transform: scaleY(0.1) rotate(90deg);
-    opacity: 0;
-}
-
-/* Responsivitate: ascundem pe mediu și mic */
-@media screen and (max-width: 1000px) {
-    #galerie-animata {
-        display: none;
+    border-image: url('/resurse/imagini/border.jpg') 30 stretch;
+  
+    img {
+      position: absolute;  
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transform: scaleY(1);
+      transition: transform 1s ease, opacity 1s ease;
     }
-}
+  
+    img.active {
+      opacity: 1;  
+      z-index: 2; 
+    }
+  
+    &:hover img.active {
+      animation-play-state: paused;  
+    }
+  }
+  
+  @media (max-width: 768px) {
+    #galerie-animata {
+      display: none;  
+    }
+  }
+  

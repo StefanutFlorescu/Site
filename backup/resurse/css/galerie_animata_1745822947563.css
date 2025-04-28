@@ -1,0 +1,38 @@
+#galerie-animata {
+  display: flex;
+  overflow: hidden;
+  border: 10px solid transparent;
+  border-image: url("/resurse/imagini/border-image.png") 30 stretch;
+  padding: 20px;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+  position: relative;
+}
+#galerie-animata img {
+  max-height: 100%;
+  transition: transform 0.5s ease-in-out;
+  transform-origin: center;
+}
+#galerie-animata img:hover {
+  animation-play-state: paused;
+}
+#galerie-animata:hover img {
+  animation-play-state: paused;
+}
+
+@keyframes slideAndRotate {
+  0% {
+    transform: scaleY(1) rotate(0deg);
+    opacity: 1;
+  }
+  50% {
+    transform: scaleY(0.1) rotate(0deg);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scaleY(0.1) rotate(90deg);
+    opacity: 0;
+  }
+}

@@ -226,17 +226,30 @@ app.get("/galerie-v", function(req, res){
 })
 
 app.get("/galerie-animata", function(req, res) {
-    let nrImagini;
-    do {
-        nrImagini = Math.floor(Math.random() * 5) + 7; 
-    } while (nrImagini === 10);
+    const toateImaginile = obGlobal.obImagini.imagini;
 
-    let imagini = [...obGlobal.obImagini.imagini];
-    imagini = imagini.sort(() => 0.5 - Math.random()).slice(0, nrImagini); 
+    function getRandomImageCount() {
+        let count;
+        do {
+            count = Math.floor(Math.random() * 5) + 7; // 7-11 inclusiv
+        } while (count === 10);
+        return count;
+    }
 
-    res.render("pagini/galerie-animata", { imagini: imagini });
+    function getRandomDistinctImages(array, count) {
+        const shuffled = [...array].sort(() => 0.5 - Math.random());
+        return shuffled.slice(0, count);
+    }
+
+    const numarImagini = getRandomImageCount();
+    const imaginiSelectate = getRandomDistinctImages(toateImaginile, Math.min(numarImagini, toateImaginile.length));
+
+    res.render("pagini/galerie-animata", {
+        ip: req.ip,
+        imagini: imaginiSelectate,
+        cale_galerie: obGlobal.obImagini.cale_galerie
+    });
 });
-
 
 
 app.get("/index/a", function(req, res){
