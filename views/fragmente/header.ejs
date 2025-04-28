@@ -36,14 +36,22 @@
             </li>   
             <li><a href="/galerie-v"><i class="fa-solid fa-image"></i><span class="menu-text">Gallery</span></a></li>
             <li><a href="#rezervations"><i class="fa-solid fa-calendar"></i><span class="menu-text">Rezervations</span></a></li>
-            <li><a href="#events-offers"><i class="fa-solid fa-ticket"></i><span class="menu-text">Events & Offers</span></a>
+            <!-- <li><a href="#events-offers"><i class="fa-solid fa-ticket"></i><span class="menu-text">Events & Offers</span></a>
                 <ul class="submenu">
                     <li><a href="#new">New Things</a></li>
                     <li><a href="#events">Events</a></li>
                     <li><a href="#offers">Offers</a></li>
                 </ul>
-            </li>
+            </li> -->
             <li><a href="#contact"><i class="fa-solid fa-circle-user"></i><span class="menu-text">Contact</span></a></li>
+            <li><a href="#produse">Produse</a>
+                <ul class="submenu">
+                    <li><a href="/produse">Toate</a></li>
+                    <% for (let optiune of optiuni) { %>
+                        <li><a href="/produse?categ=<%= optiune.unnest %>"><%= optiune.unnest %></a></li>
+                    <% } %>
+                </ul>
+            </li>
         </ul>
     </nav>            
 </header>

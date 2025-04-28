@@ -3,6 +3,28 @@ const sharp = require("sharp");
 const path= require("path");
 const fs = require("fs");
 const sass = require("sass");
+const pg = require("pg");
+
+
+const Client=pg.Client;
+
+client=new Client({
+    database:"cisco",
+    user:"Admin01",
+    password:"ciscosecpa55",
+    host:"localhost",
+    port:5432
+})
+
+client.connect()
+client.query("select * from prajituri", function(err, rezultat ){
+    console.log(err)    
+    console.log("Rezultat query:", rezultat)
+})
+client.query("select * from unnest(enum_range(null::categ_prajitura))", function(err, rezultat ){
+    console.log(err)    
+    console.log(rezultat)
+})
 
 app= express();
 
@@ -214,8 +236,20 @@ app.get("/favicon.ico", function(req, res){
 })
 
 app.get(["/","/index","/home"], function(req, res){
-    res.render("pagini/index",{ip:req.ip, imagini: obGlobal.obImagini.imagini});
-})
+    var queryOptiuni = "select * from unnest(enum_range(null::categ_prajitura))";
+    client.query(queryOptiuni, function(err, rezOptiuni){
+        if (err) {
+            console.log(err);
+            afisareEroare(res, 2);
+        } else {
+            res.render("pagini/index", {
+                ip: req.ip,
+                imagini: obGlobal.obImagini.imagini,
+                optiuni: rezOptiuni.rows
+            });
+        }
+    });
+});
 
 app.get("/despre", function(req, res){
     res.render("pagini/despre",{ip:req.ip, imagini: obGlobal.obImagini.imagini});
@@ -282,6 +316,61 @@ app.get("/abc", function(req, res, next){
 app.get("/abc", function(req, res, next){
     console.log("------------")
 })
+
+
+
+app.get("/produse", function(req, res){
+    console.log(req.query);
+
+    var conditieQuery = "";
+    if (req.query.categ) { 
+        conditieQuery = ` where categorie = '${req.query.categ}'`; 
+    }
+
+    queryOptiuni = "select * from unnest(enum_range(null::categ_prajitura))";
+    client.query(queryOptiuni, function(err, rezOptiuni){
+        if (err) {
+            console.log(err);
+            afisareEroare(res, 2);
+            return;
+        }
+
+        queryProduse = "select * from prajituri" + conditieQuery;
+        client.query(queryProduse, function(err, rez){
+            if (err){
+                console.log(err);
+                afisareEroare(res, 2);
+            }
+            else{
+                res.render("pagini/produse", {produse: rez.rows, optiuni: rezOptiuni.rows});
+            }
+        })
+    });
+})
+
+
+
+app.get("/produs/:id", function(req, res) {
+    console.log("Cerere produs cu id:", req.params.id);
+
+    let idProdus = req.params.id;
+
+    queryProdus = `SELECT * FROM prajituri WHERE id = $1`;
+    client.query(queryProdus, [idProdus], function(err, rezultat) {
+        if (err) {
+            console.log(err);
+            afisareEroare(res, 2);
+        } else {
+            if (rezultat.rows.length > 0) {
+                res.render("pagini/produs", { prod: rezultat.rows[0] });
+            } else {
+                afisareEroare(res, 404, "Nu am găsit produsul!");
+            }
+        }
+    });
+});
+
+
 
 
 
