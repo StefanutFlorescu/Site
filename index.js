@@ -17,11 +17,11 @@ client=new Client({
 })
 
 client.connect()
-client.query("select * from prajituri", function(err, rezultat ){
+client.query("select * from preparate", function(err, rezultat ){
     console.log(err)    
     console.log("Rezultat query:", rezultat)
 })
-client.query("select * from unnest(enum_range(null::categ_prajitura))", function(err, rezultat ){
+client.query("select * from unnest(enum_range(null::categ_preparate))", function(err, rezultat ){
     console.log(err)    
     console.log(rezultat)
 })
@@ -236,7 +236,7 @@ app.get("/favicon.ico", function(req, res){
 })
 
 app.get(["/","/index","/home"], function(req, res){
-    var queryOptiuni = "select * from unnest(enum_range(null::categ_prajitura))";
+    var queryOptiuni = "select * from unnest(enum_range(null::categ_preparate))";
     client.query(queryOptiuni, function(err, rezOptiuni){
         if (err) {
             console.log(err);
@@ -255,9 +255,22 @@ app.get("/despre", function(req, res){
     res.render("pagini/despre",{ip:req.ip, imagini: obGlobal.obImagini.imagini});
 })
 
-app.get("/galerie-v", function(req, res){
-    res.render("pagini/galerie-v",{ip:req.ip, imagini: obGlobal.obImagini.imagini});
-})
+app.get("/galerie-v", function(req, res) {
+    queryOptiuni = "select * from unnest(enum_range(null::categ_preparate))";
+    client.query(queryOptiuni, function(err, rezOptiuni) {
+        if (err) {
+            console.log(err);
+            afisareEroare(res, 2);
+            return;
+        }
+
+        res.render("pagini/galerie-v", { 
+            ip: req.ip, 
+            imagini: obGlobal.obImagini.imagini, 
+            optiuni: rezOptiuni.rows 
+        });
+    });
+});
 
 app.get("/galerie-animata", function(req, res) {
     const toateImaginile = obGlobal.obImagini.imagini;
@@ -327,7 +340,8 @@ app.get("/produse", function(req, res){
         conditieQuery = ` where categorie = '${req.query.categ}'`; 
     }
 
-    queryOptiuni = "select * from unnest(enum_range(null::categ_prajitura))";
+    // Obținem opțiunile pentru categorii
+    queryOptiuni = "select * from unnest(enum_range(null::categ_preparate))";
     client.query(queryOptiuni, function(err, rezOptiuni){
         if (err) {
             console.log(err);
@@ -335,34 +349,150 @@ app.get("/produse", function(req, res){
             return;
         }
 
-        queryProduse = "select * from prajituri" + conditieQuery;
+        // Obținem produsele din baza de date
+        queryProduse = "select * from preparate" + conditieQuery;
         client.query(queryProduse, function(err, rez){
             if (err){
                 console.log(err);
                 afisareEroare(res, 2);
             }
             else{
-                res.render("pagini/produse", {produse: rez.rows, optiuni: rezOptiuni.rows});
+                // Calculăm cel mai ieftin produs din fiecare categorie
+                const cheapestProducts = {};
+
+                // Parcurgem produsele și selectăm cel mai ieftin pentru fiecare categorie
+                rez.rows.forEach(product => {
+                    if (!cheapestProducts[product.categorie] || product.pret < cheapestProducts[product.categorie].pret) {
+                        cheapestProducts[product.categorie] = product;
+                    }
+                });
+
+                // Trimitem produsele și cele mai ieftine produse pe fiecare categorie către frontend
+                res.render("pagini/produse", { 
+                    produse: rez.rows, 
+                    optiuni: rezOptiuni.rows,
+                    cheapestProducts: cheapestProducts
+                });
             }
-        })
+        });
     });
-})
+});
 
 
+
+
+// app.get("/produs/:id", function(req, res) {
+//     console.log("Cerere produs cu id:", req.params.id);
+
+//     let idProdus = req.params.id;
+
+//     queryProdus = `SELECT * FROM prajituri WHERE id = $1`;
+//     client.query(queryProdus, [idProdus], function(err, rezultat) {
+//         if (err) {
+//             console.log(err);
+//             afisareEroare(res, 2);
+//         } else {
+//             if (rezultat.rows.length > 0) {
+//                 res.render("pagini/produs", { prod: rezultat.rows[0] });
+//             } else {
+//                 afisareEroare(res, 404, "Nu am găsit produsul!");
+//             }
+//         }
+//     });
+// });
+
+
+// app.get("/produs/:id", function(req, res) {
+//     console.log("Cerere produs cu id:", req.params.id);
+
+//     let idProdus = req.params.id;
+
+//     queryProdus = `SELECT * FROM prajituri WHERE id = $1`;
+//     client.query(queryProdus, [idProdus], function(err, rezultat) {
+//         if (err) {
+//             console.log(err);
+//             afisareEroare(res, 2);
+//         } else {
+//             if (rezultat.rows.length > 0) {
+//                 // Obține opțiunile pentru header
+//                 queryOptiuni = "select * from unnest(enum_range(null::categ_prajitura))";
+//                 client.query(queryOptiuni, function(err, rezOptiuni) {
+//                     if (err) {
+//                         console.log(err);
+//                         afisareEroare(res, 2);
+//                         return;
+//                     }
+
+//                     // Transmite produsul și opțiunile către produs.ejs
+//                     res.render("pagini/produs", {
+//                         prod: rezultat.rows[0],
+//                         optiuni: rezOptiuni.rows
+//                     });
+//                 });
+//             } else {
+//                 afisareEroare(res, 404, "Nu am găsit produsul!");
+//             }
+//         }
+//     });
+// });
 
 app.get("/produs/:id", function(req, res) {
     console.log("Cerere produs cu id:", req.params.id);
 
     let idProdus = req.params.id;
 
-    queryProdus = `SELECT * FROM prajituri WHERE id = $1`;
+    // Obține produsul
+    let queryProdus = `SELECT * FROM preparate WHERE id = $1`;
     client.query(queryProdus, [idProdus], function(err, rezultat) {
         if (err) {
             console.log(err);
             afisareEroare(res, 2);
         } else {
             if (rezultat.rows.length > 0) {
-                res.render("pagini/produs", { prod: rezultat.rows[0] });
+                // Obține opțiunile pentru header
+                let queryOptiuni = "SELECT * FROM unnest(enum_range(null::categ_preparate))";
+                client.query(queryOptiuni, function(err, rezOptiuni) {
+                    if (err) {
+                        console.log(err);
+                        afisareEroare(res, 2);
+                        return;
+                    }
+
+                    // Obține seturile care conțin produsul respectiv
+                    let querySeturi = `
+                        SELECT s.*, 
+                               (SELECT SUM(p.pret) FROM preparate p
+                                JOIN asociere_set a ON p.id = a.id_produs
+                                WHERE a.id_set = s.id) AS suma
+                        FROM seturi s
+                        JOIN asociere_set a ON s.id = a.id_set
+                        WHERE a.id_produs = $1
+                    `;
+                    client.query(querySeturi, [idProdus], function(err, rezSeturi) {
+                        if (err) {
+                            console.log(err);
+                            afisareEroare(res, 2);
+                            return;
+                        }
+
+                        // Calculăm prețul final pentru fiecare set
+                        let seturi = rezSeturi.rows.map(set => {
+                            const reducere = Math.min(5, set.suma) * 5;
+                            const pretFinal = (set.suma * (100 - reducere)) / 100;
+                            return {
+                                ...set,
+                                pretFinal: pretFinal.toFixed(2)
+                            };
+                        });
+
+                        // Transmite produsul, opțiunile și seturile către produs.ejs
+                        res.render("pagini/produs", {
+                            prod: rezultat.rows[0],
+                            optiuni: rezOptiuni.rows,
+                            seturi: seturi
+                        });
+                    });
+                });
             } else {
                 afisareEroare(res, 404, "Nu am găsit produsul!");
             }
@@ -371,45 +501,144 @@ app.get("/produs/:id", function(req, res) {
 });
 
 
+// app.get("/seturi", async (req, res) => {
+//     try {
+//         // Obținem opțiunile pentru categorii
+//         const queryOptiuni = "SELECT * FROM unnest(enum_range(null::categ_prajitura))";
+//         const optiuniResult = await client.query(queryOptiuni);
+
+//         // Obținem seturile
+//         const seturiResult = await client.query(`
+//             SELECT * FROM seturi
+//         `);
+
+//         const seturi = [];
+
+//         for (let set of seturiResult.rows) {
+//             const produseResult = await client.query(`
+//                 SELECT p.*
+//                 FROM prajituri p
+//                 JOIN asociere_set a ON p.id = a.id_produs
+//                 WHERE a.id_set = $1
+//             `, [set.id]);
+
+//             const produse = produseResult.rows;
+//             const suma = produse.reduce((acc, p) => acc + parseFloat(p.pret), 0);
+//             const reducere = Math.min(5, produse.length) * 5;
+//             const pretFinal = (suma * (100 - reducere)) / 100;
+
+//             seturi.push({
+//                 ...set,
+//                 produse: produse,
+//                 pretFinal: pretFinal.toFixed(2)
+//             });
+//         }
+
+//         // Trimitem seturile și opțiunile pentru categorii către template
+//         res.render("pagini/seturi", { 
+//             seturi: seturi,
+//             optiuni: optiuniResult.rows  // Trimitem opțiunile pentru categorii
+//         });
+
+//     } catch (err) {
+//         console.error("Eroare la /seturi:", err);
+//         afisareEroare(res, 2);
+//     }
+// });
 
 
 
-app.get(/^\/resurse\/[a-zA-Z0-9_\/]*$/, function(req, res, next){
-    afisareEroare(res,403);
-})
+app.get("/seturi", async (req, res) => {
+    try {
+        // Obținem opțiunile pentru categorii (dacă vrei să le afișezi și aici)
+        const queryOptiuni = "SELECT * FROM unnest(enum_range(null::categ_prajitura))";
+        const optiuniResult = await client.query(queryOptiuni);
 
+        // Obținem seturile
+        const seturiResult = await client.query(`
+            SELECT * FROM seturi
+        `);
 
-app.get("/*.ejs", function(req, res, next){
-    afisareEroare(res,400);
-})
+        const seturi = [];
 
+        for (let set of seturiResult.rows) {
+            // Obținem produsele asociate setului
+            const produseResult = await client.query(`
+                SELECT p.*
+                FROM prajituri p
+                JOIN asociere_set a ON p.id = a.id_produs
+                WHERE a.id_set = $1
+            `, [set.id]);
 
-app.get("/*", function(req, res, next){
-    try{
-        res.render("pagini"+req.url,function (err, rezultatRandare){
-            if (err){
-                if(err.message.startsWith("Failed to lookup view")){
-                    afisareEroare(res,404);
-                }
-                else{
-                    afisareEroare(res);
-                }
-            }
-            else{
-                console.log(rezultatRandare);
-                res.send(rezultatRandare)
-            }
+            const produse = produseResult.rows;
+
+            // Calculăm suma prețurilor produselor
+            const suma = produse.reduce((acc, p) => acc + parseFloat(p.pret), 0);
+            
+            // Calculăm reducerea: min(5, numărul de produse) * 5%
+            const reducere = Math.min(5, produse.length) * 5;
+            
+            // Calculăm prețul final
+            const pretFinal = (suma * (100 - reducere)) / 100;
+
+            seturi.push({
+                ...set,
+                produse: produse,
+                pretFinal: pretFinal.toFixed(2)  // Afișăm prețul final cu 2 zecimale
+            });
+        }
+
+        // Trimitem seturile și opțiunile pentru categorii către template
+        res.render("pagini/seturi", { 
+            seturi: seturi,
+            optiuni: optiuniResult.rows  // Trimitem opțiunile pentru categorii (dacă sunt necesare)
         });
+
+    } catch (err) {
+        console.error("Eroare la /seturi:", err);
+        afisareEroare(res, 2);
     }
-    catch(errRandare){
-        if(errRandare.message.startsWith("Cannot find module")){
-            afisareEroare(res,404);
-        }
-        else{
-            afisareEroare(res);
-        }
-    }
-})
+});
+
+
+
+
+// app.get(/^\/resurse\/[a-zA-Z0-9_\/]*$/, function(req, res, next){
+//     afisareEroare(res,403);
+// })
+
+
+// app.get("/*.ejs", function(req, res, next){
+//     afisareEroare(res,400);
+// })
+
+
+// app.get("/*", function(req, res, next){
+//     try{
+//         res.render("pagini"+req.url,function (err, rezultatRandare){
+//             if (err){
+//                 if(err.message.startsWith("Failed to lookup view")){
+//                     afisareEroare(res,404);
+//                 }
+//                 else{
+//                     afisareEroare(res);
+//                 }
+//             }
+//             else{
+//                 console.log(rezultatRandare);
+//                 res.send(rezultatRandare)
+//             }
+//         });
+//     }
+//     catch(errRandare){
+//         if(errRandare.message.startsWith("Cannot find module")){
+//             afisareEroare(res,404);
+//         }
+//         else{
+//             afisareEroare(res);
+//         }
+//     }
+// })
 
 
 

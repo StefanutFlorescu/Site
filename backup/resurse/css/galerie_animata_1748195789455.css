@@ -1,0 +1,40 @@
+#galerie-animata {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+  border: 10px solid;
+  border-image: url("/resurse/imagini/border.png") 30 round;
+  animation: none;
+}
+#galerie-animata .poza-galerie {
+  overflow: hidden;
+  position: relative;
+}
+#galerie-animata .poza-galerie img {
+  width: 100%;
+  transition: transform 0.8s ease-in-out;
+}
+#galerie-animata .poza-galerie img.iesire {
+  animation: iesireImagine 1.5s forwards;
+}
+#galerie-animata .poza-galerie figcaption {
+  text-align: center;
+  font-style: italic;
+  margin-top: 0.5rem;
+}
+
+@keyframes iesireImagine {
+  0% {
+    transform: scaleY(1) rotate(0deg);
+    opacity: 1;
+  }
+  50% {
+    transform: scaleY(0.2) rotate(0deg);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scaleY(0.2) rotate(90deg) translateX(300%);
+    opacity: 0;
+  }
+}

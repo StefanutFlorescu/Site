@@ -1,85 +1,187 @@
 <!DOCTYPE html>
 <html  lang="ro">
     <head>
-        <meta name="description" content="Cofetaria Dulcelind ofera prajituri, torturi, produse de patiserie cu optiunea de achizitie online si livrare prin curier.">
+        <meta name="description" content="SteakHouse produse">
         <meta name="keywords" content="cofetarie, Dulcelind, prajituri, torturi, dulce, pateuri, produse">
         <link rel="stylesheet" href="/resurse/css/produse.css" type="text/css" />
-        <title>Cofetăria Dulcelind - home</title>
+        <title>SteakHouse</title>
         <%- include("../fragmente/head") %>     
-        <script type="text/javascript" src=/resurse/js/produse.js></script>
+        <script type="text/javascript" src=/resurse/js/produse.js defer></script>
         <script type="text/javascript" src=/resurse/js/produse-cos.js></script>
-
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+        <script src="/resurse/js/orar.js" defer></script>
     </head>
+
+    <div id="modal-produse" class="modal-custom hidden">
+        <div class="modal-content-custom">
+          <span class="close-btn">&times;</span>
+          <div id="continut-modal">
+          </div>
+        </div>
+      </div>
     <body>
 
 
     <%- include("../fragmente/header") %>
 
     <main>
-        <label> Nume: <input type="text" id="inp-nume"></label>
-        <!--<label> Maxim calorii: <input type="number" id="inp-calorii" value="10000"></label>-->
-        <div> Calorii:<!-- trebuie sa aiba acelasi name ca sa formeze un grup -->
-            <p><label>Dietetic (calorii &lt; 350)
-                <input id="i_rad1"  name="gr_rad" value="0:350" type="radio"/>
-            </label></p>
-            <p><label>Mediu (350 &le; calorii &lt; 700)
-                <input id="i_rad2"  name="gr_rad" value="350:700" type="radio"/>
-            </label>
-            <p><label>Ridicat caloric (700 &le; calorii)
-                <input id="i_rad3" name="gr_rad" value="700:1000000000" type="radio"/>
-            </label>
-            <p><label>Toate
-                <input id="i_rad4" checked name="gr_rad" value="toate" type="radio"/>
-            </label>
+        <form class="container mt-4" id="form-filtrare" action="#" method="get">
+            <!-- Row pentru inputuri -->
+            <div class="row">
+                <!-- Input pentru Nume -->
+                <div class="col-md-6 mb-3">
+                    <label for="inp-nume" class="form-floating">Nume:</label>
+                    <input type="text" class="form-control" id="inp-nume">
+                </div>
+    
+                <!-- Group radio buttons pentru calorii -->
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Calorii:</label>
+                    <div class="btn-group-vertical w-100" role="group" aria-label="Calorii">
+                        <input type="checkbox" class="btn-check" name="gr_rad" id="i_rad1" value="0:350" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="i_rad1">Dietetic (calorii &lt; 350)</label>
+                        
+                        <input type="checkbox" class="btn-check" name="gr_rad" id="i_rad2" value="350:700" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="i_rad2">Mediu (350 &le; calorii &lt; 700)</label>
+                        
+                        <input type="checkbox" class="btn-check" name="gr_rad" id="i_rad3" value="700:1000000000" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="i_rad3">Ridicat caloric (700 &le; calorii)</label>
+                        
+                        <input type="checkbox" class="btn-check" name="gr_rad" id="i_rad4" value="toate" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary" for="i_rad4">Toate</label>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Row pentru inputuri de tip range si select -->
+            <div class="row">
+                <!-- Input pentru pret minim -->
+                <div class="col-md-6 mb-3">
+                    <label for="inp-pret" class="form-label">Preț minim:</label>
+                    <input type="range" class="form-control" id="inp-pret" value="0" min="0" max="6000">
+                    <span id="infoRange">(0)</span>
+                </div>
+    
+                <!-- Select pentru categorie -->
+                <div class="col-md-6 mb-3">
+                    <label for="inp-categorie" class="form-label">Select simplu:</label>
+                    <select id="inp-categorie" class="form-select">
+                        <option id="sel-toate" selected value="toate">toate</option>
+                        <% for (let opt of locals.optiuni) { %>
+                            <option value="<%- opt.unnest %>"><%- opt.unnest %> </option>
+                        <% } %>
+                    </select>
+                </div>
+            </form>
+    
+            <!-- Row pentru butoane -->
+            <div class="row">
+                <!-- Butonul de filtrare -->
+                <div class="col-12 mb-3">
+                    <button class="btn btn-primary c1 c2 c3 d-none d-sm-block" id="filtrare">
+                        <i class="bi bi-funnel"></i> Filtrează
+                    </button>
+                    <button class="btn btn-primary d-sm-none" id="filtrare">
+                        <i class="bi bi-funnel"></i>
+                    </button>
+                </div>
+                
+                <!-- Butonul de resetare -->
+                <div class="col-12 mb-3">
+                    <button class="btn btn-secondary d-none d-sm-block" id="resetare">
+                        <i class="bi bi-arrow-clockwise"></i> Resetează
+                    </button>
+                </div>
+                
+                <!-- Butoane de sortare -->
+                <div class="col-12 mb-3">
+                    <button class="btn btn-secondary d-none d-sm-block" id="sortCrescNume">
+                        <i class="bi bi-arrow-up-down"></i> Sortează crescător
+                    </button>
+                    <button class="btn btn-secondary d-sm-none" id="sortCrescNume">
+                        <i class="bi bi-arrow-up-down"></i>
+                    </button>
+    
+                    <button class="btn btn-secondary d-none d-sm-block" id="sortDescrescNume">
+                        <i class="bi bi-arrow-down-up"></i> Sortează descrescător
+                    </button>
+                    <button class="btn btn-secondary d-sm-none" id="sortDescrescNume">
+                        <i class="bi bi-arrow-down-up"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="inp-gramaj" class="form-label">Stoc minim:</label>
+                <input type="number" id="inp-stoc" class="form-control" min="0" value="0">
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label for="inp-data" class="form-label">Data adăugării:</label>
+                <input type="date" id="inp-data" class="form-control">
+            </div>
+
+            <div class="col-md-12 mb-3">
+                <label for="inp-descriere" class="form-label">Descriere:</label>
+                <textarea id="inp-descriere" class="form-control" rows="3"></textarea>
+            </div>
+            
         </div>
-
-
-        <label> Pret minim: <input type="range" id="inp-pret" value="0" min="0"  max="70"> <span id="infoRange">(0)</span></label>
-        <label>Select simplu:
-            <select id="inp-categorie">
-                <option id="sel-toate" selected value="toate">toate</option>
-                <% for (let opt of locals.optiuni) { %>
-                    <option value="<%- opt.unnest %>"><%- opt.unnest %> </option>
-                <% } %>
-            </select>
-        </label>
-
-        <p>
-        <button class="c1 c2 c3" id="filtrare">Filtreaza</button> 
-
-        <button id="resetare">Reseteaza</button><br/>
-        <button id="sortCrescNume">Sorteaza crescator dupa pret si nume</button>
-        <button id="sortDescrescNume">Sorteaza descrescator dupa pret si nume</button>
-        
-        </p>
+        <button id="btn-calculeaza"> Calculeaza</button>
       
         <p id="p-suma">Apăsați Alt+"c" pentru suma preturilor produselor afișate. </p>
-  
         <section id="produse">
 
             <h2>Produse</h2>
+            <div id="paginatie"></div>
+            <p id="nr-produse" class="text-muted mt-3">Număr produse afișate: <span id="numar-produse">0</span></p>
+            <br>
             <div class="grid-produse">
                 <% for( let prod of locals.produse) { %>
-                    <article class="produs" >
-                        <h3 class="nume">Nume: <a href="/produs/<%-prod.id %>" ><span class="val-nume"><%- prod.nume%></span></a></h3>
+                    <article class="produs <%= cheapestProducts[prod.categorie] && cheapestProducts[prod.categorie].id === prod.id ? 'cheapest' : '' %>">
+                        <h3 class="nume">Nume: <a href="/produs/<%- prod.id %>"><span class="val-nume"><%- prod.nume %></span></a></h3>
                         <div class="info-prod">
-                            <p class="pret">Pret: <span class="val-pret"><%- prod.pret%></span></p>
-                            <p class="calorii">Calorii: <span class="val-calorii"><%- prod.calorii%></span></p>
-                            <p class="gramaj">Gramaj: <span class="val-gramaj"><%- prod.gramaj%></span></p>
+                            <p class="pret">Preț: <span class="val-pret"><%- prod.pret %></span></p>
+                            <p class="calorii">Calorii: <span class="val-calorii"><%- prod.calorii %></span></p>
+                            <p class="gramaj">Gramaj: <span class="val-gramaj"><%- prod.gramaj %></span></p>
                         </div>
-                        <p class="categorie">Categorie:<span class="val-categorie"><%- prod.categorie%></span></p>
+                        <p class="categorie">Categorie: <span class="val-categorie"><%- prod.categorie %></span></p>
                         <figure>
-                            <a href="/produs/<%-prod.id %>" ><img src="/resurse/imagini/produse/<%- prod.imagine %>" style="width:50%;height:auto;" alt="[imagine <%- prod.nume %>]" /></a>
+                            <a href="/produs/<%- prod.id %>"><img src="/resurse/imagini/galerie_steak/<%- prod.imagine %>" style="width:50%;height:auto;" alt="[imagine <%- prod.nume %>]"></a>
                         </figure>
                         <label class="selecteaza-cos">
-                            Selectează:<br/>
-                            <input type="checkbox" class="select-cos" value="<%-prod.id %>" autocomplete="off">
+                            Selectează:<br />
+                            <input type="checkbox" class="select-cos" value="<%- prod.id %>" autocomplete="off">
                         </label>
+            
+                        <div class="butoane-actiuni">
+                            <!-- Buton 1: Păstrează la filtrare -->
+                            <button class="btn btn-sm btn-pastreaza" title="Păstrează produsul la filtrare" data-id="<%- prod.id %>">
+                                <i class="bi bi-pin-angle"></i>
+                            </button>
+            
+                            <!-- Buton 2: Șterge temporar -->
+                            <button class="btn btn-sm btn-sterge-temporar" title="Ascunde temporar produsul" data-id="<%- prod.id %>">
+                                <i class="bi bi-eye-slash"></i>
+                            </button>
+            
+                            <!-- Buton 3: Șterge pe durata sesiunii -->
+                            <button class="btn btn-sm btn-sterge-sesiune" title="Șterge pe durata sesiunii acest produs" data-id="<%- prod.id %>">
+                                <i class="bi bi-x-circle"></i>
+                            </button>
+                        </div>
+            
+                        <% if (cheapestProducts[prod.categorie] && cheapestProducts[prod.categorie].id === prod.id) { %>
+                            <p class="label-cheapest">Cel mai ieftin produs din această categorie!</p>
+                        <% } %>
                     </article>
-                <% }%>
-            </div>
+                <% } %>
+            
+                <p id="mesaj-filtru" class="text-center fs-4 mt-4 text-muted" style="display:none;">
+                    Nu există produse care să corespundă filtrelor.
+                </p>
+            </div>               
         </section>
-        <button id="btn-calculeaza">Calculeaza suma preturilor selectate</button>
+        <!-- <button id="btn-calculeaza">Calculeaza suma preturilor selectate</button> -->
     </main>
     
     <%- include("../fragmente/footer") %>

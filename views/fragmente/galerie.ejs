@@ -11,23 +11,33 @@
         const zi_curenta = zile_sapt[ziua_curenta];
         
         const imaginiFiltrate = imagini.filter(imag => {
+            // Dacă imaginea nu are specificate intervale de zile sau lista e goală, o păstrăm (se afișează mereu)
             if (!imag.intervale_zile || imag.intervale_zile.length === 0) return true;
             
+            // Verificăm dacă cel puțin un interval de zile permite afișarea în ziua curentă
             return imag.intervale_zile.some(interval => {
+                // Dacă intervalul nu este un array valid sau nu are cel puțin două elemente, o păstrăm
                 if (!Array.isArray(interval) || interval.length < 2) return true;
                 
-                const zi_start_index = zile_sapt.indexOf(interval[0]);
-                const zi_final_index = zile_sapt.indexOf(interval[1]);
-                
+                // Obținem indexul zilei de început și al zilei de sfârșit în săptămână
+                const zi_start_index = zile_sapt.indexOf(interval[0]); // ex: "luni" -> 1
+                const zi_final_index = zile_sapt.indexOf(interval[1]); // ex: "joi" -> 4
+        
+                // Dacă oricare dintre zile nu este validă, păstrăm imaginea
                 if (zi_start_index === -1 || zi_final_index === -1) return true;
-                
+        
+                // Dacă intervalul e de forma normală (ex: luni → joi)
                 if (zi_start_index <= zi_final_index) {
+                    // Verificăm dacă ziua curentă este în intervalul [zi_start_index, zi_final_index]
                     return ziua_curenta >= zi_start_index && ziua_curenta <= zi_final_index;
                 } else {
+                    // Dacă intervalul „trece peste duminică” (ex: vineri → marti)
+                    // Afișăm imaginea dacă suntem fie după ziua de început, fie înainte de ziua de sfârșit
                     return ziua_curenta >= zi_start_index || ziua_curenta <= zi_final_index;
                 }
             });
         });
+        
     
         if (imaginiFiltrate.length === 0) {
     %>

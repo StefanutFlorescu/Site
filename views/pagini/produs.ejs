@@ -7,12 +7,9 @@
         <title>Cofetăria Dulcelind - home</title>
         <%- include("../fragmente/head") %>     
         <link href="/resurse/css/produs.css" type="text/css" rel="stylesheet" />
+        <%- include("../fragmente/header", { optiuni: optiuni }) %>
     </head>
     <body>
-        <header class="c1" id="titlu" >
-            <h1 style="color:red;">Cofetaria <span>Dulcelind</span></h1>
-            <%- include("../fragmente/header") %>
-        </header>
     <main>
         <section>
             <h2>Pagină produs</h2>
@@ -25,12 +22,34 @@
                     <p>Gramaj: <span class="gramaj"><%- locals.prod.gramaj %> </span></p>
                     <p>Categorie: <span class="categorie"><%- locals.prod.categorie %> </span></p>
                     <p>Pentru diabetici: <span class="pt_diabetici"><%- locals.prod.pt_diabetici %> </span></p>
-                    <p>Data adăugare: <span class="categorie"><%- locals.prod.data_adaugare %> </span></p>
+                    <%
+                    const dataObj = new Date(prod.data_adaugare);
+                    const dataRo = dataObj.toLocaleDateString('ro-RO', {
+                        weekday: 'long',
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                    });
+                    %>
+                    <p>Data adăugare: <span class="categorie"><%= dataRo %></span></p>
                     <figure class="imag-produs">
-                        <img  src="/resurse/imagini/produse/<%- locals.prod.imagine %>" alt="[imagine <%- locals.prod.nume %>]" />
+                        <img  src="/resurse/imagini/galerie_steak/<%- locals.prod.imagine %>" alt="[imagine <%- locals.prod.nume %>]" />
                     </figure>    
                 </article>
             
+        </section>
+        <section id="seturi-prod">
+            <h3>Seturi care conțin acest produs</h3>
+            <ul>
+                <% for (let set of locals.seturi) { %>
+                    <li>
+                        <a href="/set/<%= set.id %>">
+                            <strong><%= set.nume_set %></strong>
+                        </a>
+                        – Preț: <%= set.pretFinal %> lei
+                    </li>
+                <% } %>
+            </ul>
         </section>
     </main>
 

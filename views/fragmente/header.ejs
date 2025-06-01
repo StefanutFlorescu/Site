@@ -1,3 +1,5 @@
+
+<%- include('../fragmente/orar') %>
 <header>
     <h1>Steakhouse</h1>
     
@@ -52,6 +54,21 @@
                     <% } %>
                 </ul>
             </li>
+            <li>
+                <button id="orar-btn">Vezi Orar</button>
+            </li>
         </ul>
+
+        
     </nav>            
 </header>
+
+<script>
+    document.getElementById('orar-btn').addEventListener('click', function() {
+        document.getElementById('orar-container').style.display = 'block'; // Arată orarul
+    });
+
+    document.getElementById('close-orar').addEventListener('click', function() {
+        document.getElementById('orar-container').style.display = 'none'; // Închide orarul
+    });
+</script>

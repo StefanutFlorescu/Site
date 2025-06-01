@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html  lang="ro">
+    <head>
+        
+        <meta name="description" content="Cofetaria Dulcelind ofera prajituri, torturi, produse de patiserie cu optiunea de achizitie online si livrare prin curier.">
+        <meta name="keywords" content="cofetarie, Dulcelind, prajituri, torturi, dulce, pateuri, produse">
+        <title>Steakhouse</title>
+        
+        <%- include("../fragmente/head.ejs") %>
+
+    </head>
+    <body>
+        <%- include("../fragmente/header.ejs") %>
+        <main>
+            <h2 class="mt-4">Seturi de produse</h2>
+            <% for (let set of seturi) { %>
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h4><%= set.nume_set %></h4>
+                        <p><%= set.descriere_set %></p>
+                        <p><strong>Preț set:</strong> <%= set.pretFinal %> lei</p>
+                        <ul>
+                            <% for (let prod of set.produse) { %>
+                                <li>
+                                    <a href="/produs/<%= prod.id %>"><%= prod.nume %></a>
+                                    – <%= prod.pret %> lei
+                                </li>
+                            <% } %>
+                        </ul>
+                    </div>
+                </div>
+            <% } %>
+            
+        </main>
+        <%- include("../fragmente/footer.ejs") %>
+
+    </body>
+</html>

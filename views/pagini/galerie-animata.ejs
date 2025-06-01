@@ -11,16 +11,20 @@
     <h1>Galeria de Steak</h1>
 
     <% if (imagini && imagini.length > 0) { %>
-        <div id="galerie-animata">
-            <% for (let img of imagini) { %>
+    <section id="galerie-animata">
+        <% for (let img of imagini) { %>
+            <figure class="poza-galerie">
                 <img src="<%= cale_galerie %>/<%= img.fisier_imagine %>" 
                      alt="<%= img.continut_alternativ %>" 
                      title="<%= img.descriere_poza %>">
-            <% } %>
-        </div>
-    <% } else { %>
-        <p>Nu sunt imagini disponibile momentan.</p>
-    <% } %>
+                <figcaption><%= img.descriere_poza %></figcaption>
+            </figure>
+        <% } %>
+    </section>
+<% } else { %>
+    <p>Nu sunt imagini disponibile momentan.</p>
+<% } %>
+
 
     <script src="/resurse/js/galerie.js"></script>
 </body>

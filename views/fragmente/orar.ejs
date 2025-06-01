@@ -1,0 +1,49 @@
+<!-- orar.ejs -->
+<div id="orar-container" class="orar-container">
+    <button id="close-orar" class="btn-close">Închide</button>
+    <h2>Orar de funcționare</h2>
+    <table class="orar">
+        <thead>
+            <tr>
+                <th>Ziua săptămânii</th>
+                <th>Interval orar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% const zile = ['Luni', 'Marți', 'Miercuri', 'Joi', 'Vineri', 'Sâmbătă', 'Duminică']; %>
+            <% const orar = [
+                { zi: 'Luni', interval: '08:00 - 18:00' },
+                { zi: 'Marți', interval: '08:00 - 18:00' },
+                { zi: 'Miercuri', interval: '08:00 - 18:00' },
+                { zi: 'Joi', interval: '08:00 - 18:00' },
+                { zi: 'Vineri', interval: '08:00 - 18:00' },
+                { zi: 'Sâmbătă', interval: 'Închis' },
+                { zi: 'Duminică', interval: 'Închis' }
+            ]; %>
+            <% let currentDay = new Date().getDay(); %> <!-- Ziua curentă -->
+            <% currentDay = currentDay === 0 ? 6 : currentDay - 1; %>
+            <% for (let zi of orar) { %>
+                <tr class="<%= currentDay === zile.indexOf(zi.zi) ? 'highlight-day' : '' %>">
+                    <td><%= zi.zi %></td>
+                    <td><%= zi.interval %></td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+    <div id="status">
+        <% const currentTime = new Date(); %>
+        <% const openingHours = {
+            'Luni': ['08:00', '14:00'],
+            'Marți': ['08:00', '18:00'],
+            'Miercuri': ['08:00', '18:00'],
+            'Joi': ['08:00', '18:00'],
+            'Vineri': ['08:00', '18:00'],
+            'Sâmbătă': ['Închis'],
+            'Duminică': ['Închis']
+        }; %>
+        <% const dayName = zile[currentDay]; %>
+        <% const [start, end] = openingHours[dayName]; %>
+        <% const isOpen = currentTime >= new Date().setHours(start.split(':')[0], start.split(':')[1], 0, 0) && currentTime <= new Date().setHours(end.split(':')[0], end.split(':')[1], 0, 0); %>
+        <p>Firma este <%= isOpen ? 'deschisă' : 'închisă' %> acum.</p>
+    </div>
+</div>
